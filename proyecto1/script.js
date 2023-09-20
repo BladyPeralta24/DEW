@@ -1,7 +1,6 @@
 
 var numeroCartel = prompt("¿Cuantos carteles quieres?: ");
 
-alert("han aparecido "+ numeroCartel +" carteles");
 
 
 document.write('<div id= "cartel">');
@@ -11,7 +10,6 @@ while (numeroCartel > 0){
         alert('te has pasado de carteles');
         numeroCartel = prompt("cuantos carteles quieres: ");
     }
-    alert("ha entrado con exito");
     document.write('cartel ');
     numeroCartel--;
 };
@@ -23,7 +21,6 @@ document.write('</div>');
 
 var numeroPuerta = prompt("¿Cuantos puertas quieres?: ");
 
-alert("han aparecido "+ numeroPuerta +" puertas");
 
 document.write('<div id= "numeroPuerta">');
 for (n=0; n < numeroPuerta; n++){
@@ -34,7 +31,6 @@ document.write('</div>');
 
 var numeroVentana = prompt("¿Cuantos ventanas quieres?: ");
 
-alert("han aparecido "+ numeroVentana +" ventanas");
 
 document.write('<div id= "ventana">');
 document.write('ventana');
@@ -46,11 +42,14 @@ var colorSemaforo = prompt("¿De que color está el semaforo?: ");
 
 document.write('<div id= "semaforo">');
 if (colorSemaforo == 'rojo'){
-    document.write("El semaforo está en rojo");
+    console.log("El semaforo está en rojo");
+    document.write("rojo");
 }else if (colorSemaforo == 'verde'){
-    document.write("El semaforo está en verde");
+    console.log("El semaforo está en verde");
+    document.write("verde");
 }else if (colorSemaforo == 'naranja'){
-    document.write("El semaforo está en naranja");
+    console.log("El semaforo está en naranja");
+    document.write("naranja");
 }else{
     alert("Como mierda el color del semaforo es "+ colorSemaforo);
 };
@@ -58,8 +57,6 @@ document.write('</div>');
 
 
 var numeroCoche = prompt("¿Cuantos coches quieres?: ");
-
-alert("han aparecido "+ numeroCoche +" coches");
 
 document.write('<div id= "coche">');
 document.write('coche');
