@@ -1,4 +1,126 @@
-// Aqui traajamos con los carteles
+// enter the number of shops on screen for the user
+var  shopsNumber = prompt("How many shops do you want?: ");
+var doorNumber = parseFloat(prompt("Enter the door number of the first shop: "));
+var i = 1;
+document.write("<div class = 'container'>");
+document.write("<div id= 'shops'>");
+while (shopsNumber <= 0){
+    alert("ERROR, You must enter a positive number");
+    var  shopsNumber = prompt("How many shops do you want?: ");
+}
+
+while (shopsNumber > 0){
+    document.write("<div id='shop'>");
+    var chart = prompt ("Enter the name of the chart "+ i);
+    document.write("<div id = 'chart'>"+chart+"</div>");
+    document.write("<div id = 'doorNumber'>"+doorNumber+"</div>");
+    document.write("<div class='container1'>");
+    document.write("<div id = 'door'><img src='imagenes/puerta.png' alt='a door image'></div>")
+    var shopWindow = prompt ("Enter the content of the shop window "+ i);
+    document.write("<div id = 'shopWindow'>"+shopWindow+"</div>");
+    doorNumber+=2;
+    i++;
+    
+    document.write("</div>");
+    document.write("</div>");
+    shopsNumber--;
+}
+
+
+document.write("</div>");
+
+var clock = prompt("What time is it?, only specific hours: ");
+document.write('<div id = "clockTrafficLight">');
+
+switch (clock){
+    case '1':
+        document.write('<div id="clock"><img src="imagenes/horas/clock_13.jpg" alt="a clock image"></div>');
+        break;
+    case '2':
+        document.write('<div id="clock"><img src="imagenes/horas/clock_14.jpg" alt="a clock image"></div>');
+        break;
+    case '3':
+        document.write('<div id="clock"><img src="imagenes/horas/clock_15.jpg" alt="a clock image"></div>');
+        break;
+    case '4':
+        document.write('<div id="clock"><img src="imagenes/horas/clock_16.jpg" alt="a clock image"></div>');
+        break;
+    case '5':
+        document.write('<div id="clock"><img src="imagenes/horas/clock_17.jpg" alt="a clock image"></div>');
+        break;
+    case '6':
+        document.write('<div id="clock"><img src="imagenes/horas/clock_18.jpg" alt="a clock image"></div>');
+        break;
+    case '7':
+        document.write('<div id="clock"><img src="imagenes/horas/clock_19.jpg" alt="a clock image"></div>');
+        break;
+    case '8':
+        document.write('<div id="clock"><img src="imagenes/horas/clock_20.jpg" alt="a clock image"></div>');
+        break;
+    case '9':
+        document.write('<div id="clock"><img src="imagenes/horas/clock_21.jpg" alt="a clock image"></div>');
+        break;
+    case '10':
+        document.write('<div id="clock"><img src="imagenes/horas/clock_22.jpg" alt="a clock image"></div>');
+        break;
+    case '11':
+        document.write('<div id="clock"><img src="imagenes/horas/clock_23.jpg" alt="a clock image"></div>');
+        break;
+    case '12':
+        document.write('<div id="clock"><img src="imagenes/horas/clock_12.png" alt="a clock image"></div>');
+        break;
+    default:
+        alert("The time entered is not appropriate");
+}
+
+var trafficLight= prompt ("What colour is the traffic Light? ");
+if (trafficLight == "red"){
+    document.write('<div id="trafficLight"><img src="imagenes/luces_semaforos/luz_roja.gif" alt="a traffic light image"></div>');
+    console.log ("The traffic light is red");
+}else if (trafficLight == "green"){
+    document.write('<div id="trafficLight"><img src="imagenes/luces_semaforos/luz_verde.gif" alt="a traffic light image"></div>');
+    console.log ("The traffic light is green");
+}else if (trafficLight == "yellow"){
+    document.write('<div id="trafficLight"><img src="imagenes/luces_semaforos/luz_amarilla.gif" alt="a traffic light image"></div>');
+    console.log("The traffic light is yellow");
+}else{
+    alert("the color of the traffic light is not the corresponding one");
+};
+
+
+var car = prompt("How many cars do you want?: ")
+document.write('<div id= cars>')
+for (i = 0; i < car; i++){
+    document.write('<div id="car"><img src="imagenes/coche_animado.gif" alt="a car image"></div>')
+}
+document.write("</div>");
+document.write("</div>");
+document.write("</div>");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* // Aqui traajamos con los carteles
 var numeroCartel = prompt("¿Cuantos carteles quieres?: ");
 
 
@@ -26,29 +148,14 @@ document.write("<div id= 'numeroPuertas'>");
 for (n=0; n < numeroPuerta; n++){
     document.write('<div id= "numeroPuerta">');
     document.write('<img src="imagenes/numero_puerta.png" alt="imagen del numero de la puerta">');
-    document.write("<div>");
+    document.write("<div id = 'container'>");
     document.write('<img src="imagenes/puerta.png" alt="imagen del numero de la puerta">');
+    document.write('<div id= "ventana">OFERTA</div>');
     document.write("</div>");
     document.write('</div>');
 };
 
 document.write('</div>');
-
-
-
-// Aqui trabajamos con las ventanas de los escaparates
-var numeroVentana = prompt("¿Cuantos ventanas quieres?: ");
-
-document.write("<div id= 'ventanas'>");
-
-while (numeroVentana > 0){
-    document.write('<div id= "ventana">');
-    document.write('<img src="imagenes/ventana_animada.gif" alt="imagen de un escaparate">');
-    document.write('</div>');
-    numeroVentana --;
-}
-document.write('</div>');
-
 
 
 
@@ -92,3 +199,4 @@ document.write("</div>");
 
 
 
+ */

@@ -2,132 +2,104 @@
     /*padding: 10px;
     margin: 10px;*/
 
-    border-width: 2px;
-    border-style: solid;
-    border-color: black;
+    border: 2px solid black;
+}
+
+.container1{
+    /*padding: 10px;
+    margin: 10px;*/
+
+    border: 2px solid black;
+    display: inline-block;
+}
+
+
+
+#shops{
+    display: inline-block;
+}
+
+#shop{
+    border: 2px solid black;
+    width: fit-content;
+    margin: 10px;
+    float: left;
+}
+
+#chart{
+    border: 2px solid black;
+    height: 50px;
+    width: 300px;
+    margin: 10px;
+    font-size: 40px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+#doorNumber {
+    border: 2px solid black;
+    width: fit-content;
+    margin: 10px;
+    font-size: 30px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+
+#door {
+    border: 2px solid black;
+    width: fit-content;
+    margin: 10px;
+    float: left;
+}
+
+#shopWindow{
+    border: 5px solid black;
+    /*width: fit-content;*/
+    width: 300px;
+    display: inline-block;
+    margin: 50px;
+    padding: 10px;
+    font-size: 30px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+#clockTrafficLight{
+    border: 2px solid black;
+    width: fit-content;
+    margin: 10px;
+}
+
+#clock{
+    border: 2px solid black;
+    width: fit-content;
+    display: inline-block;
+    
+}
+
+#trafficLight{
+    border: 2px solid black;
+    width: fit-content;
+    display: inline-block;
+}
+
+#cars{
+    border: 2px solid black;
+    width: fit-content;
+    margin: 10px;
+}
+
+#car{
+    border: 2px solid black;
+    width: fit-content;
+    display: inline-block;
 }
 
 img{
-    width: 10em;
+    width: 5em;
 }
 
-/*
-#carteles{
-    padding: 10px;
-    margin: 10px;
-    border-width: 2px;
-    border-style: solid;
-    border-color: black;
-}
-
-
-#cartel{
-    padding: 10px;
-    margin: 10px;
-    border-width: 2px;
-    border-style: solid;
-    border-color: black;
-    width: fit-content;
-    display: inline-block;
-}
-
-#numeroPuertas{
-    padding: 10px;
-    margin: 10px;
-    border-width: 2px;
-    border-style: solid;
-    border-color: black;
-}
-
-#numeroPuerta{
-    padding: 10px;
-    margin: 10px;
-    border-width: 2px;
-    border-style: solid;
-    border-color: black;
-    width: fit-content;
-    display: inline-block;
-}
-
-
-#ventanas{
-    padding: 10px;
-    margin: 10px;
-    border-width: 2px;
-    border-style: solid;
-    border-color: black;
-}
-
-#ventana{
-    padding: 10px;
-    margin: 10px;
-    border-width: 2px;
-    border-style: solid;
-    border-color: black;
-    width: fit-content;
-    display: inline-block;
-}
-
-
-#semaforos{
-    padding: 10px;
-    margin: 10px;
-    border-width: 2px;
-    border-style: solid;
-    border-color: black;
-}
-
-
-#semaforo{
-    padding: 10px;
-    margin: 10px;
-    border-width: 2px;
-    border-style: solid;
-    border-color: black;
-    width: fit-content;
-    display: inline-block;
-}
-
-#coches{
-    padding: 10px;
-    margin: 10px;
-    border-width: 2px;
-    border-style: solid;
-    border-color: black;
-}
-
-#coche{
-    padding: 10px;
-    margin: 10px;
-    border-width: 2px;
-    border-style: solid;
-    border-color: black;
-    width: fit-content;
-    display: inline-block;
-}
-*/
-
-
-#carteles,
-#numeroPuertas,
-#ventanas,
-#semaforos,
-#coches {
-    border-width: 2px;
-    border-style: solid;
-    border-color: black;
-}
-
-
-
-#cartel,
-#numeroPuerta,
-#ventana,
-#semaforo,
-#coche {
-    border-width: 2px;
-    border-style: solid;
-    border-color: black;
-    width: fit-content;
-    display: inline-block;
-}
