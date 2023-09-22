@@ -1,13 +1,29 @@
 // enter the number of shops on screen for the user
-var  shopsNumber = prompt("How many shops do you want?: ");
-var doorNumber = parseFloat(prompt("Enter the door number of the first shop: "));
+var shopsNumber = parseInt(prompt("How many shops do you want?: "));
+
+
+function isInt(n){
+    return n%1 === 0;
+}
+
+while (shopsNumber <= 0 || !isInt(shopsNumber)){
+    alert("ERROR. You must enter a positive number: ");
+    shopsNumber = prompt("How many shops do you want?: ");
+}
+
+var doorNumber = parseInt(prompt("Enter the door number of the first shop: "));
+
+while (doorNumber <= 0 || !isInt(doorNumber)){
+    alert("ERROR. You must enter a positive number: ");
+    doorNumber = parseInt(prompt("Enter the door number of the first shop: "));
+}
+
+
+
 var i = 1;
 document.write("<div class = 'container'>");
 document.write("<div id= 'shops'>");
-while (shopsNumber <= 0){
-    alert("ERROR, You must enter a positive number");
-    var  shopsNumber = prompt("How many shops do you want?: ");
-}
+
 
 while (shopsNumber > 0){
     document.write("<div id='shop'>");
@@ -29,8 +45,15 @@ while (shopsNumber > 0){
 
 document.write("</div>");
 
-var clock = prompt("What time is it?, only specific hours: ");
+var clock = prompt("What time is it?, only specific hours from 1 to 12: ");
 document.write('<div id = "clockTrafficLight">');
+
+if (clock < 0 || clock > 13){
+    while (clock < 0 || clock > 13){
+        alert("the variable "+ clock +" is not correct");
+        var clock = prompt("What time is it?, only specific hours from 1 to 12: ");
+    }
+}
 
 switch (clock){
     case '1':
@@ -70,10 +93,17 @@ switch (clock){
         document.write('<div id="clock"><img src="imagenes/horas/clock_12.png" alt="a clock image"></div>');
         break;
     default:
-        alert("The time entered is not appropriate");
+        break;
 }
 
-var trafficLight= prompt ("What colour is the traffic Light? ");
+var trafficLight= prompt ("What colour is the traffic Light?: ");
+
+while (trafficLight != "red" && trafficLight != "green" && trafficLight != "yellow"){
+    alert("the traffic light color is not correct");
+    var trafficLight= prompt ("What colour is the traffic Light?: ");
+}
+console.log ("successful exit");
+
 if (trafficLight == "red"){
     document.write('<div id="trafficLight"><img src="imagenes/luces_semaforos/luz_roja.gif" alt="a traffic light image"></div>');
     console.log ("The traffic light is red");
@@ -83,13 +113,19 @@ if (trafficLight == "red"){
 }else if (trafficLight == "yellow"){
     document.write('<div id="trafficLight"><img src="imagenes/luces_semaforos/luz_amarilla.gif" alt="a traffic light image"></div>');
     console.log("The traffic light is yellow");
-}else{
-    alert("the color of the traffic light is not the corresponding one");
 };
 
 
 var car = prompt("How many cars do you want?: ")
 document.write('<div id= cars>')
+
+while (car < 0 || !isInt(car)){
+    if (car < 0){
+        alert("the car variable is either not a number or is less than 0. Repeat");
+    };
+    var car = prompt("How many cars do you want?: ");
+}
+
 for (i = 0; i < car; i++){
     document.write('<div id="car"><img src="imagenes/coche_animado.gif" alt="a car image"></div>')
 }
