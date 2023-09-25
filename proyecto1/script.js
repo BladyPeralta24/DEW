@@ -11,12 +11,16 @@ while (isNaN(shopsNumber) || shopsNumber <= 0 || shopsNumber > 6 || shopsNumber 
     shopsNumber = prompt("How many stores do you want?: ");
 }
 
+console.log(shopsNumber);
 var doorNumber = prompt("Enter the door number of the first store: ");
 
 while (isNaN(doorNumber) || doorNumber <= 0 || doorNumber % 1 !== 0) {
     alert("ERROR. You must enter a positive integer: ");
     doorNumber = prompt("Enter the door number of the first store: ");
 }
+
+// convertimos la variable doorNumber a entero
+doorNumber = parseInt(doorNumber);
 
 
 // We declare the variable shopsNumberValue as an iterator to use in the following loop
