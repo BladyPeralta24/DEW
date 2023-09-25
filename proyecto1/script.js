@@ -9,6 +9,12 @@ while (isNaN(shopsNumber) || shopsNumber <= 0 || shopsNumber > 6 || shopsNumber 
     alert("ERROR. You must enter a positive integer and the number of stores must not exceed 6.");
 
     shopsNumber = prompt("How many stores do you want?: ");
+
+    if (!isNaN(shopsNumber)){
+        shopsNumber = Number.isInteger(shopsNumber);
+    }else{
+        break;
+    }
 }
 
 console.log(shopsNumber);
@@ -19,7 +25,7 @@ while (isNaN(doorNumber) || doorNumber <= 0 || doorNumber % 1 !== 0) {
     doorNumber = prompt("Enter the door number of the first store: ");
 }
 
-// convertimos la variable doorNumber a entero
+// we convert the doorNumber variable to an integer, so it can work
 doorNumber = parseInt(doorNumber);
 
 
