@@ -1,0 +1,2 @@
+/*Preguntar al usuario que pelicula quiere 
+elegir en una lista de peliculas*/
