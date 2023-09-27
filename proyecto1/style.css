@@ -117,11 +117,13 @@
     width: fit-content;
     margin: 10px;
     background-color: white;
+    
 }
 
 #car{
     border: 2px solid black;
     width: fit-content;
+    display: inline-block;
 }
 
 img{
