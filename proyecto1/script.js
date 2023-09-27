@@ -66,51 +66,51 @@ while (time == false){
     var clock = prompt("What time is it?, only specific hours from 1 to 12: ");
     switch (clock){
         case '1':
-            document.write('<div id="clock"><img src="imagenes/horas/clock_13.jpg" alt="a clock image"></div>');
+            document.write('<div id="clock"><img id="imagen_reloj" src="imagenes/horas/clock_13.jpg" alt="a clock image"></div>');
             time = true;
             break;
         case '2':
-            document.write('<div id="clock"><img src="imagenes/horas/clock_14.jpg" alt="a clock image"></div>');
+            document.write('<div id="clock"><img id="imagen_reloj" src="imagenes/horas/clock_14.jpg" alt="a clock image"></div>');
             time = true;
             break;
         case '3':
-            document.write('<div id="clock"><img src="imagenes/horas/clock_15.jpg" alt="a clock image"></div>');
+            document.write('<div id="clock"><img id="imagen_reloj" src="imagenes/horas/clock_15.jpg" alt="a clock image"></div>');
             time = true;
             break;
         case '4':
-            document.write('<div id="clock"><img src="imagenes/horas/clock_16.jpg" alt="a clock image"></div>');
+            document.write('<div id="clock"><img id="imagen_reloj" src="imagenes/horas/clock_16.jpg" alt="a clock image"></div>');
             time = true;
             break;
         case '5':
-            document.write('<div id="clock"><img src="imagenes/horas/clock_17.jpg" alt="a clock image"></div>');
+            document.write('<div id="clock"><img id="imagen_reloj" src="imagenes/horas/clock_17.jpg" alt="a clock image"></div>');
             time = true;
             break;
         case '6':
-            document.write('<div id="clock"><img src="imagenes/horas/clock_18.jpg" alt="a clock image"></div>');
+            document.write('<div id="clock"><img id="imagen_reloj" src="imagenes/horas/clock_18.jpg" alt="a clock image"></div>');
             time = true;
             break;
         case '7':
-            document.write('<div id="clock"><img src="imagenes/horas/clock_19.jpg" alt="a clock image"></div>');
+            document.write('<div id="clock"><img id="imagen_reloj" src="imagenes/horas/clock_19.jpg" alt="a clock image"></div>');
             time = true;
             break;
         case '8':
-            document.write('<div id="clock"><img src="imagenes/horas/clock_20.jpg" alt="a clock image"></div>');
+            document.write('<div id="clock"><img id="imagen_reloj" src="imagenes/horas/clock_20.jpg" alt="a clock image"></div>');
             time = true;
             break;
         case '9':
-            document.write('<div id="clock"><img src="imagenes/horas/clock_21.jpg" alt="a clock image"></div>');
+            document.write('<div id="clock"><img id="imagen_reloj" src="imagenes/horas/clock_21.jpg" alt="a clock image"></div>');
             time = true;
             break;
         case '10':
-            document.write('<div id="clock"><img src="imagenes/horas/clock_22.jpg" alt="a clock image"></div>');
+            document.write('<div id="clock"><img id="imagen_reloj" src="imagenes/horas/clock_22.jpg" alt="a clock image"></div>');
             time = true;
             break;
         case '11':
-            document.write('<div id="clock"><img src="imagenes/horas/clock_23.jpg" alt="a clock image"></div>');
+            document.write('<div id="clock"><img id="imagen_reloj" src="imagenes/horas/clock_23.jpg" alt="a clock image"></div>');
             time = true;
             break;
         case '12':
-            document.write('<div id="clock"><img src="imagenes/horas/clock_12.png" alt="a clock image"></div>');
+            document.write('<div id="clock"><img id="imagen_reloj" src="imagenes/horas/clock_12.png" alt="a clock image"></div>');
             time = true;
             break;
         default:
@@ -125,16 +125,16 @@ var light = false;
 while(light == false){
     var trafficLight= prompt ("What colour is the traffic Light?: ");
     if (trafficLight == "red"){
-        document.write('<div id="trafficLight"><img src="imagenes/luces_semaforos/luz_roja.gif" alt="a traffic light image"></div>');
+        document.write('<div id="trafficLight"><img id="imagen_semaforo" src="imagenes/luces_semaforos/luz_roja.gif" alt="a traffic light image"></div>');
         // We check with console.log that the data is correctly entered
         console.log ("The traffic light is red");
         light = true;
     }else if (trafficLight == "green"){
-        document.write('<div id="trafficLight"><img src="imagenes/luces_semaforos/luz_verde.gif" alt="a traffic light image"></div>');
+        document.write('<div id="trafficLight"><img id="imagen_semaforo" src="imagenes/luces_semaforos/luz_verde.gif" alt="a traffic light image"></div>');
         console.log ("The traffic light is green");
         light = true;
     }else if (trafficLight == "yellow"){
-        document.write('<div id="trafficLight"><img src="imagenes/luces_semaforos/luz_amarilla.gif" alt="a traffic light image"></div>');
+        document.write('<div id="trafficLight"><img id="imagen_semaforo" src="imagenes/luces_semaforos/luz_amarilla.gif" alt="a traffic light image"></div>');
         console.log("The traffic light is yellow");
         light = true;
     }else{
@@ -163,7 +163,7 @@ while (car <= 0 || isNaN(car) || car % 1 !== 0){
 
 // we use the for loop to iterate x amounts of cars
 for (i = 0; i < car; i++){
-    document.write('<div id="car"><img src="imagenes/coche_animado.gif" alt="a car image"></div>');
+    document.write('<div id="car"><img id="imagen_coche" src="imagenes/coche_animado.gif" alt="a car image"></div>');
 }
 document.write("</div>");
 document.write("</div>");
