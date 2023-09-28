@@ -32,24 +32,48 @@ var cols = 5;
 var aux = 1; */
 
 
-function matrix(rows, cols){
-    var aux = 1;
-    document.write('<table>');
-    for (i=0; i<cols; i++){
-        document.write('<tr>');
-        for (j=0; j<rows; j++){
-            // Genera un numero aleatorio
-            var numeroAleatorio = Math.floor(Math.random() * (rows * cols)) + 1;
+// function matrix(rows, cols){
+//     var aux = 1;
+//     document.write('<table>');
+//     for (i=0; i<cols; i++){
+//         document.write('<tr>');
+//         for (j=0; j<rows; j++){
+//             // Genera un numero aleatorio
+//             var numeroAleatorio = Math.floor(Math.random() * (rows * cols)) + 1;
             
-            document.write('<td>'+ aux +'</td>');
-            aux++;
+//             document.write('<td>'+ aux +'</td>');
+//             aux++;
+//         }
+//         document.write('</tr>')
+//     }
+//     document.write('</table>');
+// }
+
+// matrix(5,5);
+
+function matrix(rows, cols) {
+    document.write('<table>');
+    for (var i = 0; i < cols; i++) {
+      document.write('<tr>');
+      for (var j = 0; j < rows; j++) {
+        // Genera un número aleatorio entre 1 y 100
+        var numeroAleatorio = Math.floor(Math.random() * 100) + 1;
+  
+        // Define un umbral para pintar la celda de rojo (por ejemplo, si el número es mayor que 75)
+        if (numeroAleatorio > 75) {
+          document.write('<td class="red">' + numeroAleatorio + '</td>');
+        } else {
+          document.write('<td>' + numeroAleatorio + '</td>');
         }
-        document.write('</tr>')
+      }
+      document.write('</tr>');
     }
     document.write('</table>');
-}
+  }
 
-matrix(5,5);
+  matrix(5,5);
+
+
 
 /* document.write("<table>");
 for (i=0; i<cols ; i++){

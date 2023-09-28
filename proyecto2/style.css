@@ -43,3 +43,8 @@ td{
     display: inline-block;
     text-align: center;
 }
+
+.red {
+    background-color: red;
+    color: white;
+  }
