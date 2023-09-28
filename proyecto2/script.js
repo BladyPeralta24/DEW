@@ -52,26 +52,28 @@ var aux = 1; */
 // matrix(5,5);
 
 function matrix(rows, cols) {
-    document.write('<table>');
-    for (var i = 0; i < cols; i++) {
-      document.write('<tr>');
-      for (var j = 0; j < rows; j++) {
-        // Genera un número aleatorio entre 1 y 100
-        var numeroAleatorio = Math.floor(Math.random() * 100) + 1;
-  
-        // Define un umbral para pintar la celda de rojo (por ejemplo, si el número es mayor que 75)
-        if (numeroAleatorio > 75) {
-          document.write('<td class="red">' + numeroAleatorio + '</td>');
-        } else {
-          document.write('<td>' + numeroAleatorio + '</td>');
-        }
-      }
-      document.write('</tr>');
-    }
-    document.write('</table>');
-  }
+  var aux = 1;
+  document.write('<table>');
+  for (var i = 0; i < cols; i++) {
+    document.write('<tr>');
+    for (var j = 0; j < rows; j++) {
+      // Genera un número aleatorio entre 0 y 1 (0 o 1)
+      var aleatorio = Math.floor(Math.random() * 2);
 
-  matrix(5,5);
+      // Define un umbral para pintar la celda de rojo (por ejemplo, si el número aleatorio es 1)
+      if (aleatorio === 1) {
+        document.write('<td class="red">' + aux + '</td>');
+      } else {
+        document.write('<td>' + aux + '</td>');
+      }
+      aux++;
+    }
+    document.write('</tr>');
+  }
+  document.write('</table>');
+}
+
+matrix(10,5);
 
 
 
