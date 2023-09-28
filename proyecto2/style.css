@@ -1,13 +1,13 @@
 
 .container{
-    /* border: 1px solid black;*/
+    /*border: 1px solid black;*/
+    /*display: inline-block;*/
     margin-bottom: 20px;
-    display: inline-block;
 }
 
 
 
-table{
+/* table{
     border: 1px solid black;
     border-collapse: collapse;
     
@@ -16,14 +16,19 @@ table{
 td{
     border: 1px solid black;
     border-collapse: collapse;
-    width: 500px; /*Ancho de la tabla*/
-    height: 100px; /*Altura de la tabla*/
-}
+    width: 500px; Ancho de la tabla
+    height: 100px; Altura de la tabla
+} */
 
 
 #film{
     border: 1px solid black;
-    margin-bottom: 20px;
     padding: 90px;
     display: inline-block;
+}
+
+#choose{
+    border: 1px solid black;
+    width: 500px;
+    text-align: center;
 }
