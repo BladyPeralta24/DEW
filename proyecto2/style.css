@@ -8,6 +8,25 @@
     align-items: center;
 }
 
+@media(max-width: 800px){
+    .container{
+        margin: 10px;
+        flex-direction: column;
+    }
+}
+
+button{
+    margin: 0.625em;
+    cursor: pointer;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 400px;
+    width: fit-content;
+}
+
+.buttonMovie1{
+    background-image: url(imagenes/slam_dunk.jpg);
+}
 
 
 table{
@@ -48,3 +67,9 @@ td{
     background-color: red;
     color: white;
   }
+
+/* img{
+    background-size:contain;
+    width:50px;
+    
+} */
