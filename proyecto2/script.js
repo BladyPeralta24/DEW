@@ -1,17 +1,11 @@
-/*Preguntar al usuario que pelicula quiere 
-elegir en una lista de peliculas*/
-var boolean = false;
-
-
-document.write("<div class='container'>");
-document.write("<button onclick='showSeats()' id='film1'>Pelicula 1</button>");
-document.write("<button onclick='showSeats()' id='film2'>Pelicula 2</button>");
-document.write("<button onclick='showSeats()' id='film3'>Pelicula 3</button>");
-document.write("</div>");
-
-document.write("<div class='container'>");
-document.write("<div id='choose'>Choose</div>");
-document.write("</div>");
+// crear un constructor de las salas de cine
+var myCinema = function(rows, cols, nameFilms, ticketPrice,matrix){
+  this.rows = rows;
+  this.cols = cols;
+  this.nameFilms = nameFilms;
+  this.ticketPrice = ticketPrice;
+  this.matrix = matrix;
+}
 
 
 
@@ -21,10 +15,78 @@ var filmButton2 = document.getElementById('film2');
 var filmButton3 = document.getElementById('film3');
 
 
+
+
 // crear una funcion para pinchar en el cartel
-function showSeats(){
-    return alert('Me tocaste');
+function showSeats(filmButton){
+  switch (filmButton){
+    // implementar la logica en el caso de que elija una de estas peliculas
+    case 'film1':
+      console.log('Salida con exito');
+      alert('Has elegido la pelicula 1');
+      break;
+    case 'film2':
+      console.log('Salida con exito');
+      alert('Has elegido la pelicula 2');
+      break;
+    case 'film3':
+      console.log('Salida con exito');
+      alert('Has elegido la pelicula 3');
+      break;
+    default:
+      console.log('Salida con exito');
+      alert('Pelicula desconocida');
+  }
+
 }
+
+
+
+
+
+
+
+// Declarar un objeto para el cine
+var myCinema = new Object();
+myCinema.rows = 0;
+myCinema.cols = 0;
+myCinema.nameFilms = "";
+myCinema.ticketPrice = "";
+myCinema.matrix = [];
+
+
+
+
+
+
+// Lógica para generar una matriz para el numero de butacas
+function matrix(rows, cols) {
+  var aux = 1;
+  document.write('<table>');
+  for (var i = 0; i < cols; i++) {
+    document.write('<tr>');
+    for (var j = 0; j < rows; j++) {
+      // Genera un número aleatorio entre 0 y 1 (0 o 1)
+      var aleatorio = Math.floor(Math.random() * 2);
+
+      // Define un umbral para pintar la celda de rojo (por ejemplo, si el número aleatorio es 1)
+      if (aleatorio === 1) {
+        document.write('<td class="red">' + aux + '</td>');
+      } else {
+        document.write('<td>' + aux + '</td>');
+      }
+      aux++;
+    }
+    document.write('</tr>');
+  }
+  document.write('</table>');
+}
+
+matrix(10,5);
+
+
+
+
 
 /* var matrix = [];
 var rows = 5;
@@ -51,29 +113,7 @@ var aux = 1; */
 
 // matrix(5,5);
 
-function matrix(rows, cols) {
-  var aux = 1;
-  document.write('<table>');
-  for (var i = 0; i < cols; i++) {
-    document.write('<tr>');
-    for (var j = 0; j < rows; j++) {
-      // Genera un número aleatorio entre 0 y 1 (0 o 1)
-      var aleatorio = Math.floor(Math.random() * 2);
 
-      // Define un umbral para pintar la celda de rojo (por ejemplo, si el número aleatorio es 1)
-      if (aleatorio === 1) {
-        document.write('<td class="red">' + aux + '</td>');
-      } else {
-        document.write('<td>' + aux + '</td>');
-      }
-      aux++;
-    }
-    document.write('</tr>');
-  }
-  document.write('</table>');
-}
-
-matrix(10,5);
 
 
 
