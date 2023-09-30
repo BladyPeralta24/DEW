@@ -28,6 +28,14 @@ button{
     background-image: url(imagenes/slam_dunk.jpg);
 }
 
+.buttonMovie2{
+    background-image: url(imagenes/saw-x.jpg);
+}
+
+.buttonMovie3{
+    background-image: url(imagenes/avatar.jpg);
+}
+
 
 table{
     /*border: 1px solid black;*/
@@ -61,6 +69,14 @@ td{
     width: 500px;
     display: inline-block;
     text-align: center;
+}
+
+#seats{
+    margin-bottom: 20px;
+    width: 500px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
 .red {
