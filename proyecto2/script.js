@@ -1,24 +1,14 @@
-// crear un constructor de las salas de cine
+/* // crear un constructor de las salas de cine
 var myCinema = function(rows, cols, nameFilms, ticketPrice,matrix){
   this.rows = rows;
   this.cols = cols;
   this.nameFilms = nameFilms;
   this.ticketPrice = ticketPrice;
   this.matrix = matrix;
-}
+} */
 
 
 
-
-
-
-// Declarar constructor de un objeto para el cine
-var myCinema = new Object();
-myCinema.rows = 0;
-myCinema.cols = 0;
-myCinema.nameFilms = "";
-myCinema.ticketPrice = "";
-myCinema.matrix = [];
 
 function myCinema(rows,cols,movieName, ticketPrice){
   this.rows = rows;
@@ -49,8 +39,43 @@ function myCinema(rows,cols,movieName, ticketPrice){
       }
       console.log(rowStr);
     }
-  }
+  };
+
+  // Metodo para reservar un asiento
+  this.reserveSeat = function(row, col){
+    if (this.seats[row-1] && this.seats[row-1][col-1] === 0){
+      this.seats[row-1][col-1] = 1; //Marca el asiento como ocupado
+      console.log(`Asiento ${row}-${col} reservado para la pelicula ${this.movieName}.`);
+      return true; // Reservacion exitosa
+    }else{
+      console.log(`El asiento ${row}-${col} ya está ocupado.`);
+      return false; // Reservacion fallida
+    }
+  };
+
+  // Método para liberar un asiento
+  this.releaseSeat = function(row,col){
+    if(this.seat[row - 1] && this.seats[row - 1][col - 1] === 1){
+      this.seats[row - 1][col - 1] = 0; // Marcar el asiento como libre
+      console.log(`Asiento ${row}-${col} no está ocupado o no existe.`);
+      return false; // Liberación fallida
+    }
+  };
 }
+
+
+// Ejemplo de uso
+var cinema1 = new myCinema(5,7,"Mulán",10);
+cinema1.showAvailability();
+cinema1.reserveSeat(2,3);
+cinema1.releaseSeat(2,3) // Intentar reservar el mismo asiento nuevamente
+cinema1.showAvailability();
+cinema1.releaseSeat(2,3);
+cinema1.showAvailability();
+
+
+
+
 
 
 
