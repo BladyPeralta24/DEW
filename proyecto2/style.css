@@ -16,6 +16,13 @@
 }
 
 button{
+    width: auto;
+    height: auto;
+    cursor: pointer;
+}
+
+.buttonMovie1{
+    background-image: url(imagenes/slam_dunk.jpg);
     margin: 0.625em;
     cursor: pointer;
     background-size: cover;
@@ -24,16 +31,24 @@ button{
     width: fit-content;
 }
 
-.buttonMovie1{
-    background-image: url(imagenes/slam_dunk.jpg);
-}
-
 .buttonMovie2{
     background-image: url(imagenes/saw-x.jpg);
+    margin: 0.625em;
+    cursor: pointer;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 400px;
+    width: fit-content;
 }
 
 .buttonMovie3{
     background-image: url(imagenes/avatar.jpg);
+    margin: 0.625em;
+    cursor: pointer;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 400px;
+    width: fit-content;
 }
 
 
@@ -83,6 +98,17 @@ td{
     background-color: red;
     color: white;
   }
+
+.green{
+    background-color: green;
+    color: black;
+}
+
+#buy{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 /* img{
     background-size:contain;
