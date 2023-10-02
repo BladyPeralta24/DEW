@@ -1,86 +1,29 @@
-/* // crear un constructor de las salas de cine
-var myCinema = function(rows, cols, nameFilms, ticketPrice,matrix){
-  this.rows = rows;
-  this.cols = cols;
-  this.nameFilms = nameFilms;
-  this.ticketPrice = ticketPrice;
-  this.matrix = matrix;
-} */
 
 
 
+// Crear un Objeto con su respetivo constructor
 
-function myCinema(rows,cols,movieName, ticketPrice){
+function myCinema(rows,cols,movieName, ticketPrice, seatsHTML){
+  // Propiedades del objeto
   this.rows = rows;
   this.cols = cols;
   this.movieName = movieName;
   this.ticketPrice = ticketPrice;
-  this.seats = []; //Matriz para representar los asientos
-
-  //Inicializar la matriz de asientos como todos libres (0)
-  for (i=0; i<rows; i++){
-    this.seats[i] = [];
-    for (j=0; j<cols; j++){
-      this.seats[i][j] = 0 // 0 representa asientos libres, 1 representa asiento ocupado
-    }
-  }
-
-  // Metodo para mostrar la disponibilidad de asientos
-  this.showAvailability = function(){
-    console.log(`Disponibilidad de asientos para la pelicula ${this.movieName}: `);
-    for(i=0; i < this.rows; i++){
-      var rowStr = '';
-      for(j=0; j < this.cols; j++){
-        if (this.seats[i][j] === 0){
-          rowStr += '0'; // 0 representa asiento libre
-        }else{
-          rowStr += 'X'; // X representa asientos ocupados
-        }
-      }
-      console.log(rowStr);
-    }
-  };
+  this.seatsHTML = seatsHTML; //Matriz para representar los asientos en HTML
 
   // Metodo para reservar un asiento
-  this.reserveSeat = function(row, col){
-    if (this.seats[row-1] && this.seats[row-1][col-1] === 0){
-      this.seats[row-1][col-1] = 1; //Marca el asiento como ocupado
-      console.log(`Asiento ${row}-${col} reservado para la pelicula ${this.movieName}.`);
-      return true; // Reservacion exitosa
-    }else{
-      console.log(`El asiento ${row}-${col} ya está ocupado.`);
-      return false; // Reservacion fallida
-    }
-  };
-
-  // Método para liberar un asiento
-  this.releaseSeat = function(row,col){
-    if(this.seat[row - 1] && this.seats[row - 1][col - 1] === 1){
-      this.seats[row - 1][col - 1] = 0; // Marcar el asiento como libre
-      console.log(`Asiento ${row}-${col} no está ocupado o no existe.`);
-      return false; // Liberación fallida
-    }
+  this.reserveSeat = function (row,col){
+    // Agregar logica de reserva aqui
   };
 }
 
 
-// Ejemplo de uso
-var cinema1 = new myCinema(5,7,"Mulán",10);
-cinema1.showAvailability();
-cinema1.reserveSeat(2,3);
-cinema1.releaseSeat(2,3) // Intentar reservar el mismo asiento nuevamente
-cinema1.showAvailability();
-cinema1.releaseSeat(2,3);
-cinema1.showAvailability();
+
+var film1 = new myCinema(10,10,"THE FIRST SLAM DUNK", 7);
+var film2 = new myCinema(10,12, "SAW X", 8);
+var film3 = new myCinema(10,14, "AVATAR", 9);
 
 
-
-
-
-
-
-// Pruebas
-// ...
 
 
 // Lógica para generar una matriz para el número de butacas
@@ -116,15 +59,18 @@ function showSeats(filmButton) {
     // implementar la lógica en el caso de que elija una de estas películas
     case 'film1':
       console.log('Salida con éxito');
-      matrixHTML = createMatrix(2, 2);
+      var seatsHTML = createMatrix(film1.rows,film1.cols);
+      matrixHTML = seatsHTML;
       break;
     case 'film2':
       console.log('Salida con éxito');
-      matrixHTML = createMatrix(3, 3);
+      var seatsHTML = createMatrix(film2.rows,film2.cols);
+      matrixHTML = seatsHTML;
       break;
     case 'film3':
       console.log('Salida con éxito');
-      matrixHTML = createMatrix(4, 4);
+      var seatsHTML = createMatrix(film3.rows,film3.cols);
+      matrixHTML = seatsHTML;
       break;
     default:
       console.log('Nothing');
