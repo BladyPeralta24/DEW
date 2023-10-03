@@ -25,10 +25,10 @@ button{
     background-image: url(imagenes/slam_dunk.jpg);
     margin: 0.625em;
     cursor: pointer;
+    width: fit-content;
     background-size: cover;
     background-repeat: no-repeat;
     height: 400px;
-    width: fit-content;
 }
 
 .buttonMovie2{

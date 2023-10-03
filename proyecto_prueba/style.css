@@ -1,0 +1,74 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+h1 {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+}
+
+#peliculas{
+    text-align: center;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button{
+    width: auto;
+    height: auto;
+    cursor: pointer;
+}
+
+
+.pelicula1{
+    background-image: url(imagenes/slam_dunk.jpg);
+    margin: 0.625em;
+    cursor: pointer;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 400px;
+    width: fit-content;
+    padding: 90px;
+    display: inline-block;
+    color: transparent;
+}
+
+.pelicula2{
+    background-image: url(imagenes/saw-x.jpg);
+    margin: 0.625em;
+    cursor: pointer;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 400px;
+    width: fit-content;
+    padding: 90px;
+    display: inline-block;
+    color: transparent;
+}
+
+.pelicula3{
+    background-image: url(imagenes/avatar.jpg);
+    margin: 0.625em;
+    cursor: pointer;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 400px;
+    width: fit-content;
+    padding: 90px;
+    display: inline-block;
+    color: transparent;
+}
+
+
+
+.asiento {
+    width: 30px;
+    height: 30px;
+    margin: 2px;
+    display: inline-block;
+}
