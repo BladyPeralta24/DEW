@@ -48,17 +48,17 @@ const sala3 = new SalaCine(6, 7, "Pelicula 3", 8.0);
 
 // Aquí debes agregar la lógica para que el usuario interactúe con la página y haga reservas
 
-function mostrarPeliculas(peliculaSeleccionada) {
-    // const peliculaSeleccionada = prompt("Elija una película: \n1. Pelicula 1\n2. Pelicula 2\n3. Pelicula 3");
+function mostrarPeliculas() {
+    const peliculaSeleccionada = prompt("Elija una película: \n1. Pelicula 1\n2. Pelicula 2\n3. Pelicula 3");
 
     switch (peliculaSeleccionada) {
-        case "sala1":
+        case "1":
             mostrarSala(sala1);
             break;
-        case "sala2":
+        case "2":
             mostrarSala(sala2);
             break;
-        case "sala3":
+        case "3":
             mostrarSala(sala3);
             break;
         case null:
