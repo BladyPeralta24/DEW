@@ -15,11 +15,6 @@ function myCinema(rows,cols,movieName, ticketPrice, seatsHTML){
     // Agregar logica de reserva aqui
     /* si la casilla esta en blanco, entonces:*/
   //};
-
-  // Metodo para liberar un asiento
-  this.freeingSeat = function  (row,col){
-
-  };
 }
 
 
@@ -139,3 +134,8 @@ function showSeats(filmButton) {
       // document.write("<button class='buttonBuy' onclick='buySeats()'>Buy</button>");
   
 }
+
+
+createMatrix(film1.rows, film1.cols);
+createMatrix(film2.rows, film2.cols);
+createMatrix(film3.rows, film3.cols);
