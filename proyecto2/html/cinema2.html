@@ -4,10 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/proyecto2/style.css">
 </head>
 <body>
     <h1>Sala de cine 2</h1>
+    <div id = "buy"></div>
+    <div class="container">
+      <div id ="seats"></div>
+    </div>
 
     <script src="/proyecto2/script.js"></script>
+    <script>
+        // crear una instancia de Teatro
+        let teatro = new Teatro('Pelicula 2', 12, 6, 6);
+  
+        // Generar la tabla
+        teatro.generarTabla();
+      </script>
 </body>
 </html>

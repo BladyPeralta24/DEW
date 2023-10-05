@@ -21,34 +21,38 @@ button{
     cursor: pointer;
 }
 
-.buttonMovie1{
+.botonPelicula1{
     background-image: url(imagenes/slam_dunk.jpg);
     margin: 0.625em;
     cursor: pointer;
-    width: fit-content;
+    width: 270px;
     background-size: cover;
     background-repeat: no-repeat;
     height: 400px;
+    color: transparent;
+    
 }
 
-.buttonMovie2{
+.botonPelicula2{
     background-image: url(imagenes/saw-x.jpg);
     margin: 0.625em;
     cursor: pointer;
     background-size: cover;
     background-repeat: no-repeat;
     height: 400px;
-    width: fit-content;
+    width: 270px;
+    color: transparent;
 }
 
-.buttonMovie3{
+.botonPelicula3{
     background-image: url(imagenes/avatar.jpg);
     margin: 0.625em;
     cursor: pointer;
     background-size: cover;
     background-repeat: no-repeat;
     height: 400px;
-    width: fit-content;
+    width: 270px;
+    color: transparent;
 }
 
 
@@ -71,44 +75,23 @@ td{
     text-align: center;
 }
 
+/* .asiento{
+    width: 20px;
+    height: 20px;
+} */
 
-#film1, #film2, #film3{
-    border: 1px solid black;
-    padding: 90px;
-    display: inline-block;
-}
 
-#choose{
-    border: 1px solid black;
-    margin-bottom: 20px;
-    width: 500px;
-    display: inline-block;
-    text-align: center;
-}
-
-#seats{
-    margin-bottom: 20px;
-    width: 500px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-
-.red {
+.libre {
     background-color: red;
     color: white;
   }
 
-.green{
+.ocupado{
     background-color: green;
     color: black;
 }
 
-#buy{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+
 
 /* img{
     background-size:contain;
