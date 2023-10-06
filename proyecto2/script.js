@@ -40,7 +40,14 @@ class Teatro{
     for (let i = 0; i < this.filas; i++) {
         document.write('<tr>');
         for (let j = 0; j < this.columnas; j++) {
-            let clase = this.asientos[i][j] === 'libre' ? 'libre' : 'ocupado';
+            //let clase = this.asientos[i][j] === 'libre' ? 'libre' : 'ocupado';
+            // simplificamos la condición de arriba
+            let clase = this.asientos[i][j]
+            if (clase === 'libre'){
+              clase = 'libre';
+            }else{
+              clase = 'ocupado';
+            }
             // Agregar número de fila y columna en cada butaca
             document.write(`<td class="asiento ${clase}">${i + 1}-${j + 1}</td>`);
         }
@@ -56,9 +63,22 @@ let teatro2 = new Teatro('Pelicula 2', 12, 6, 6);
 let teatro3 = new Teatro('Pelicula 3', 15, 7, 7);
 
 
-document.write("<button onclick='reservarAsiento()'>Reservar asiento</button>");
+
+
+document.write("<div class='container'>");
+document.write('<a href="/proyecto2/html/cinema1.html"><button class="botonPelicula1" id="film1">Pelicula de estreno</button></a>');
+document.write('<a href="/proyecto2/html/cinema2.html"><button class="botonPelicula2" id="film2">Pelicula de estreno</button></a>');
+document.write(' <a href="/proyecto2/html/cinema3.html"><button class="botonPelicula3" id="film3">Pelicula de estreno</button></a>');
+document.write("</div>");
+
+document.write("<div class='container'>");
+document.write("<div if=choose>Elije una película y pincha sobre ella</div>")
+document.write("</div>")
+
+
 
 function reservarAsiento(){
+  document.write("<button onclick='reservarAsiento()'>Reservar asiento</button>");
   let fila = prompt('Ingresa la fila del asiento de que deseas reservar');
   let columna = prompt('Ingresa la columna del asiento que deseas reservar');
 
