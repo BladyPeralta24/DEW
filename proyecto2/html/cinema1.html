@@ -15,56 +15,67 @@
 
     <script src="/proyecto2/script.js"></script>
     <script>
-      // crear una instancia de Teatro
+      // Crear una instancia de la clase Teatro con datos iniciales
       let teatro = new Teatro('The First Slam Dunk', 10, 5, 5);
 
-      function reservarAsiento(){
-        let fila = prompt('Ingresa la fila del asiento de que deseas reservar');
+      // Función para reservar un asiento
+      function reservarAsiento() {
+        let fila = prompt('Ingresa la fila del asiento que deseas reservar');
         let columna = prompt('Ingresa la columna del asiento que deseas reservar');
-    
-        fila = parseInt(fila) -1;
-        columna = parseInt(columna) -1;
-
+      
+        // Convierte los valores de fila y columna en números y ajusta los índices a base 0
+        fila = parseInt(fila) - 1;
+        columna = parseInt(columna) - 1;
+      
+        // Pregunta al usuario para confirmar la reserva
         let confirmacion = confirm(`Estás a punto de reservar el asiento: ${fila + 1}-${columna + 1}. ¿Deseas continuar?`);
-        
-        if (confirmacion){
-          if(teatro.reservarAsiento(fila, columna)){
+      
+        if (confirmacion) {
+          if (teatro.reservarAsiento(fila, columna)) {
             alert('Asiento reservado con éxito');
+            // Vuelve a mostrar la tabla de asientos actualizada
             teatro.mostrarAsientos();
-          }else{
+          } else {
             alert("El asiento ya está ocupado");
           }
-        }else{
-          alert("Tu reserva no ha sido realizado.");
+        } else {
+          alert("Tu reserva no ha sido realizada.");
         }
       }
 
-      function liberarAsiento(){
-        let fila = prompt('Ingresa la fila del asiento de que deseas liberar');
+      // Función para liberar un asiento
+      function liberarAsiento() {
+        let fila = prompt('Ingresa la fila del asiento que deseas liberar');
         let columna = prompt('Ingresa la columna del asiento que deseas liberar');
-    
-        fila = parseInt(fila) -1;
-        columna = parseInt(columna) -1;
-    
-        if(teatro.liberarAsiento(fila, columna)){
+      
+        // Convierte los valores de fila y columna en números y ajusta los índices a base 0
+        fila = parseInt(fila) - 1;
+        columna = parseInt(columna) - 1;
+      
+        if (teatro.liberarAsiento(fila, columna)) {
           alert('Asiento liberado con éxito');
+          // Vuelve a mostrar la tabla de asientos actualizada
           teatro.mostrarAsientos();
-        }else{
+        } else {
           alert("El asiento ya estaba libre");
         }
       }
 
-      function confirmarReserva(){
+      // Función para confirmar una reserva
+      function confirmarReserva() {
         teatro.confirmarReserva();
       }
 
-      function mostrarReserva(){
+      // Función para mostrar la información de la reserva
+      function mostrarReserva() {
         let reserva = teatro.calcularReserva();
         alert(`Has seleccionado ${reserva.cantidad} asientos. El precio total es ${reserva.precioTotal}. La película es '${teatro.nombrePelicula}'.`);
-    }
-      
-      // Generar la tabla
+      }
+
+      // Genera la tabla de asientos inicial
       teatro.mostrarAsientos();
+
+      // Las demas implementaciones de cada html son lo mismo, por lo que no hace falta comentarlo
 
 
     </script>
