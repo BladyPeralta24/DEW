@@ -75,26 +75,28 @@ td{
     text-align: center;
 }
 
-/* .asiento{
-    width: 20px;
-    height: 20px;
-} */
 
 
-.libre {
-    background-color: red;
-    color: white;
-  }
 
-.ocupado{
+
+.libre{
     background-color: green;
     color: black;
 }
 
+.reservado{
+    background-color: orange;
+    color: black;
+}
 
+.ocupado {
+    background-color: red;
+    color: white;
+  }
 
-/* img{
-    background-size:contain;
-    width:50px;
-    
-} */
+.botones{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+

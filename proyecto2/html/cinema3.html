@@ -18,8 +18,47 @@
         // crear una instancia de Teatro
         let teatro = new Teatro('Avatar, El sentido del Agua', 15, 7, 7);
 
+        function reservarAsiento(){
+          let fila = prompt('Ingresa la fila del asiento de que deseas reservar');
+          let columna = prompt('Ingresa la columna del asiento que deseas reservar');
+      
+          fila = parseInt(fila) -1;
+          columna = parseInt(columna) -1;
+      
+          if(teatro.reservarAsiento(fila, columna)){
+            alert('Asiento reservado con éxito');
+            teatro.mostrarAsientos();
+          }else{
+            alert("El asiento ya está ocupado");
+          }
+        }
+
+        function liberarAsiento(){
+          let fila = prompt('Ingresa la fila del asiento de que deseas liberar');
+          let columna = prompt('Ingresa la columna del asiento que deseas liberar');
+      
+          fila = parseInt(fila) -1;
+          columna = parseInt(columna) -1;
+      
+          if(teatro.liberarAsiento(fila, columna)){
+            alert('Asiento liberado con éxito');
+            teatro.mostrarAsientos();
+          }else{
+            alert("El asiento ya estaba libre");
+          }
+        }
+
+        function confirmarReserva(){
+          teatro.confirmarReserva();
+        }
+
+        function mostrarReserva(){
+          let reserva = teatro.calcularReserva();
+          alert(`Has seleccionado ${reserva.cantidad} asientos. El precio total es ${reserva.precioTotal}. La película es '${teatro.nombrePelicula}'.`);
+      }
+
         // Generar la tabla
-        teatro.generarTabla();
+        teatro.mostrarAsientos();
       </script>
 </body>
 </html>

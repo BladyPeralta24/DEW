@@ -4,94 +4,115 @@ class Teatro{
     this.precioBoleto = precioBoleto;
     this.filas = filas;
     this.columnas = columnas;
-    // Intenta cargar el estado desde el almacenamiento local
-    let estadoGuardado = localStorage.getItem('estado');
-    if(estadoGuardado){
-      this.asientos = JSON.parse(estadoGuardado);
-    }else{
-      this.asientos = Array(filas).fill().map(() => Array(columnas).fill().map(() => Math.random() < 0.5 ? 'libre' : 'ocupado'));
-    }
+    this.asientos = Array(filas).fill().map(() => Array(columnas).fill().map(() => Math.random() < 0.5 ? 'O' : 'X'));
+    this.asientosReservados = Array(filas).fill().map(() => Array(columnas).fill(false));
+    this.asientosConfirmados = Array(filas).fill().map(() => Array(columnas).fill(false));
+
 
     
   }
 
   reservarAsiento(fila, columna){
-    if (this.asientos[fila][columna] === "libre"){
-        this.asientos[fila][columna] = 'ocupado';
+    // Si el asiento está libre
+    if (this.asientos[fila][columna] === "O"){
+        // Marcamos el asiento como ocupado
+        this.asientosReservados[fila][columna] = true;
         // Guarda el estado en el almacenamiento local
-        localStorage.setItem('estado', JSON.stringify(this.asientos));
         return true;
     } else {
+        // Si el asiento ya está ocupado devolvemos false
         return false;
     }
   }
 
   liberarAsiento(fila, columna){
-    if (this.asientos[fila][columna] === 'ocupado'){
-        this.asientos[fila][columna] = 'libre';
+    if (this.asientos[fila][columna] === 'X'){
+        this.asientos[fila][columna] = 'O';
         return true;
     }else{
         return false;
     }
   }
 
-  generarTabla() {
+  calcularReserva() {
+    let cantidad = 0;
+    let asientosSeleccionados = [];
+    for (let i = 0; i < this.filas; i++) {
+        for (let j = 0; j < this.columnas; j++) {
+            if (this.asientosReservados[i][j] || this.asientosConfirmados[i][j]) {
+                cantidad++;
+                asientosSeleccionados.push(`${i + 1}-${j + 1}`);
+            }
+        }
+    }
+    let precioTotal = cantidad * this.precioBoleto;
+    return {cantidad, precioTotal, asientosSeleccionados};
+  }
+
+  mostrarAsientos() {
+    document.open();
+    document.write('<link rel="stylesheet" href="/proyecto2/style.css">');
     document.write('<table>');
     for (let i = 0; i < this.filas; i++) {
         document.write('<tr>');
         for (let j = 0; j < this.columnas; j++) {
-            //let clase = this.asientos[i][j] === 'libre' ? 'libre' : 'ocupado';
-            // simplificamos la condición de arriba
-            let clase = this.asientos[i][j]
-            if (clase === 'libre'){
+            let clase = '';
+            if (this.asientos[i][j] === 'X' && !this.asientosReservados[i][j]) {
+                clase = 'ocupado';
+            } else if (this.asientosReservados[i][j]) {
+                clase = 'reservado';
+            } else if (this.asientosConfirmados[i][j]) {
+                clase = 'ocupado';
+            } else {
               clase = 'libre';
-            }else{
-              clase = 'ocupado';
             }
-            // Agregar número de fila y columna en cada butaca
-            document.write(`<td class="asiento ${clase}">${i + 1}-${j + 1}</td>`);
+            document.write(`<td class="${clase}">${i + 1}-${j + 1}</td>`);
         }
         document.write('</tr>');
     }
     document.write('</table>');
+    document.write("<div class = 'botones'>")
+    document.write('<button onclick="reservarAsiento()">Reservar Asiento</button>');
+    document.write('<button onclick="confirmarReserva()">Confirmar Reserva</button>');
+    document.write('<button onclick="liberarAsiento()">Liberar Asiento</button>');
+    document.write('<button onclick="mostrarReserva()">Mostrar Reserva</button>');
+    document.write("</div>")
+    document.close();
+  }
+
+  confirmarReserva() {
+    let asientosReservados = [];
+    for (let i = 0; i < this.filas; i++) {
+        for (let j = 0; j < this.columnas; j++) {
+            if (this.asientosReservados[i][j]) {
+                asientosReservados.push(`${i + 1}-${j + 1}`);
+            }
+        }
+    }
+    if (asientosReservados.length > 0) {
+        let confirmacion = confirm(`Estás a punto de reservar los siguientes asientos: ${asientosReservados.join(', ')}. ¿Deseas continuar?`);
+        if (confirmacion) {
+            for (let i = 0; i < this.filas; i++) {
+                for (let j = 0; j < this.columnas; j++) {
+                    if (this.asientosReservados[i][j]) {
+                        this.asientosConfirmados[i][j] = true;
+                        this.asientosReservados[i][j] = false;
+                    }
+                }
+            }
+            alert('Tu reserva ha sido confirmada. Gracias por elegir nuestro teatro.');
+        } else {
+            alert('Tu reserva no ha sido confirmada. Puedes seguir seleccionando asientos.');
+        }
+    } else {
+        alert('No has reservado ningún asiento.');
+    }
+    this.mostrarAsientos();
   }
 
 }
 
-let teatro1 = new Teatro('Pelicula 1', 10, 5, 5);
-let teatro2 = new Teatro('Pelicula 2', 12, 6, 6);
-let teatro3 = new Teatro('Pelicula 3', 15, 7, 7);
 
-
-
-
-document.write("<div class='container'>");
-document.write('<a href="/proyecto2/html/cinema1.html"><button class="botonPelicula1" id="film1">Pelicula de estreno</button></a>');
-document.write('<a href="/proyecto2/html/cinema2.html"><button class="botonPelicula2" id="film2">Pelicula de estreno</button></a>');
-document.write(' <a href="/proyecto2/html/cinema3.html"><button class="botonPelicula3" id="film3">Pelicula de estreno</button></a>');
-document.write("</div>");
-
-document.write("<div class='container'>");
-document.write("<div if=choose>Elije una película y pincha sobre ella</div>")
-document.write("</div>")
-
-
-
-function reservarAsiento(){
-  document.write("<button onclick='reservarAsiento()'>Reservar asiento</button>");
-  let fila = prompt('Ingresa la fila del asiento de que deseas reservar');
-  let columna = prompt('Ingresa la columna del asiento que deseas reservar');
-
-  if(teatro1.reservarAsiento(fila, columna)){
-    alert('Asiento reservado con éxito');
-    //Recargar la página
-    location.reload();
-    // Actualizar la tabla
-    teatro1.generarTabla();
-  }else{
-    alert("El asiento ya está ocupado");
-  }
-}
 
 
 
