@@ -26,8 +26,8 @@ class Teatro{
   }
 
   liberarAsiento(fila, columna){
-    if (this.asientos[fila][columna] === 'X'){
-        this.asientos[fila][columna] = 'O';
+    if (this.asientosConfirmados[fila][columna]){
+        this.asientosConfirmados[fila][columna] = false;
         return true;
     }else{
         return false;
