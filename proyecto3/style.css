@@ -1,0 +1,52 @@
+.container{
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@media(max-width: 800px){
+    .container{
+        margin: 10px;
+        flex-direction: column;
+    }
+}
+
+button{
+    width: auto;
+    height: auto;
+    cursor: pointer;
+}
+
+.botonPelicula1{
+    background-image: url(/proyecto3/imagenes/slam_dunk.jpg);
+    margin: 0.625em;
+    cursor: pointer;
+    width: 270px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 400px;
+    color: transparent;
+    
+}
+
+.botonPelicula2{
+    background-image: url(/proyecto3/imagenes/saw-x.jpg);
+    margin: 0.625em;
+    cursor: pointer;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 400px;
+    width: 270px;
+    color: transparent;
+}
+
+.botonPelicula3{
+    background-image: url(/proyecto3/imagenes/avatar.jpg);
+    margin: 0.625em;
+    cursor: pointer;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 400px;
+    width: 270px;
+    color: transparent;
+}
