@@ -58,13 +58,52 @@ class Teatro{
 
     // Metodo para mostrar los asientos usando DOM
     mostrarAsientos(){
-        document.open();
-        
+        const asientoContenedor = document.getElementById('asiento-container');
+        asientoContenedor.innerHTML = '';
+
+        for (let i = 0; i < this.asientos.length; i++){
+            const fila = this.asientos[i];
+            const elementoFila  = document.createElement('div');
+            elementoFila.className = 'fila';
+
+            for (let j = 0; j < fila.length; j++){
+                const asiento = fila[j];
+                const elementoAsiento = document.createElement('div');
+                elementoAsiento.textContent = asiento.number;
+
+                if (asiento.asientosReservados){
+                    elementoAsiento.className = 'ocupado';
+                }else{
+                    elementoAsiento.className = 'libre';
+                }
+                
+                elementoFila.appendChild(elementoAsiento);
+            }
+            asientoContenedor.appendChild(elementoFila);
+        }
     }
-
-
-
-
-
-
 }
+
+
+// Crear tres peliculas con diferentes configuraciones de asientos
+const teatro1 = new Teatro("The First Slam Dunk", 8, 10, 10);
+const teatro2 = new Teatro("Saw X", 10, 12, 12);
+const teatro3 = new Teatro("Avatar", 12, 15, 10);
+
+let teatroActual = teatro1;
+
+function mostrarAsientos(teatro){
+    const asientoContenedor = document.getElementById('asiento-container');
+    const costoContenedor = document.getElementById('costo-container');
+    teatroActual = teatro;
+    teatroActual.mostrarAsientos();
+    actualizarCosto();
+    asientoContenedor.style.display = 'block';
+    costoContenedor.style.display = 'block';
+}
+
+function actualizarCosto(){
+    const elementoCosteTotal = document.getElementById('costo-total');
+    elementoCosteTotal.textContent = teatroActual.precioBoleto;
+}
+

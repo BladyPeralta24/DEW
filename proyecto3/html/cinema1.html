@@ -8,12 +8,19 @@
 </head>
 <body>
     <h1>Cinema 1</h1>
+    <div id="asiento-container"></div>
+    <div id="costo-container" style="display: none;">
+        <p>COSTO TOTAL <span id="costo-total">0</span>€</p>
+    </div>
+
+
+
+
+
+
     <script src="/proyecto3/script.js"></script>
     <script>
-        let teatro = new Teatro("The First Slam Dunk", 8, 10, 10);
-        teatro.reservarAsiento(1, 1);
-        teatro.calcularReserva();
-        teatro.liberarAsiento(1, 1);
+        mostrarAsientos(teatro1);
         
     </script>
 </body>
