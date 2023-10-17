@@ -8,14 +8,31 @@ class Teatro{
         this.columnas = columnas;
 
         //Creamos una matriz de asientos aleatorios
-        this.asientos = Array(filas).fill().map(() => Array(columnas).fill().map(() => Math.random() < 0.5 ? 'libre' : 'ocupado'));
-
+        //this.asientos = Array(filas).fill().map(() => Array(columnas).fill().map(() => Math.random() < 0.5 ? 'libre' : 'ocupado'));
+        this.asientos = this.generarAsientos();
         //Inicializamos las matrices para el seguimiento de asientos reservados y confirmados
         this.asientosReservados = Array(filas).fill().map(() => Array(columnas).fill(false));
         this.asientosConfirmados = Array(filas).fill().map(() => Array(columnas).fill(false));
     }
 
     //Creacion de metodos de la clase
+
+    generarAsientos(){
+        const asiento = [];
+
+        for (let i = 1; i <= this.filas; i++){
+            const fila = [];
+
+            for (let j = 1; j <= this.columnas; j++){
+                const reservado = Math.random() < 0.5;
+                fila.push({number: j, reserva: reservado});
+            }
+
+            asiento.push(fila);
+        }
+
+        return asiento;
+    }
 
     //Método para reservar un asiento
     reservarAsiento(fila, columna){
@@ -71,10 +88,16 @@ class Teatro{
                 const elementoAsiento = document.createElement('div');
                 elementoAsiento.textContent = asiento.number;
 
-                if (asiento.asientosReservados){
+                // Crear un ID unico para cada asiento combinando fila y columna
+                const asientoId = `asiento-${i}-${j}`;
+                elementoAsiento.id = asientoId;
+
+                if (asiento.reserva){
                     elementoAsiento.className = 'ocupado';
+                    elementoAsiento.id = 'ocupado';
                 }else{
                     elementoAsiento.className = 'libre';
+                    elementoAsiento.id = 'libre';
                 }
                 
                 elementoFila.appendChild(elementoAsiento);
@@ -107,3 +130,6 @@ function actualizarCosto(){
     elementoCosteTotal.textContent = teatroActual.precioBoleto;
 }
 
+
+const mostrar = document.getElementById("libre");
+mostrar.addEventListener('click',() =>{console.log('boton en funcion')});
