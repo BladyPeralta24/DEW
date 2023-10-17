@@ -25,7 +25,7 @@ class Teatro{
 
             for (let j = 1; j <= this.columnas; j++){
                 const reservado = Math.random() < 0.5;
-                fila.push({number: j, reserva: reservado});
+                fila.push({number: j, reserva: reservado, inmutable: reservado});
             }
 
             asiento.push(fila);
@@ -87,10 +87,25 @@ class Teatro{
                 const asiento = fila[j];
                 const elementoAsiento = document.createElement('div');
                 elementoAsiento.textContent = asiento.number;
+                if (this.asientos[i][j]){
+                    elementoAsiento.classList.add('inmutable');
+                }
 
                 // Crear un ID unico para cada asiento combinando fila y columna
                 const asientoId = `asiento-${i}-${j}`;
                 elementoAsiento.id = asientoId;
+                elementoAsiento.addEventListener('click', () => {
+                    if (!asiento.inmutable){
+                        if (!elementoAsiento.classList.contains('ocupado')){
+                            elementoAsiento.classList.add('ocupado');
+                            console.log(`Asiento seleccionado: asiento-${i}-${j}`);
+                        } else {
+                            elementoAsiento.classList.remove('ocupado');
+                        }
+                          
+                    }
+                    
+                })
 
                 if (asiento.reserva){
                     elementoAsiento.className = 'ocupado';
@@ -129,6 +144,17 @@ function actualizarCosto(){
     const elementoCosteTotal = document.getElementById('costo-total');
     elementoCosteTotal.textContent = teatroActual.precioBoleto;
 }
+
+/* document.getElementById('asiento-container').addEventListener('click', (event) => {
+    const clickedElement = event.target;
+    if (clickedElement.classList.contains('libre')) {
+        const asientoId = clickedElement.id;
+        const [_, fila, columna] = asientoId.split('-');
+        console.log(`Funciona el botón en el asiento. Fila: ${fila}, Columna: ${columna}`);
+    } else if (clickedElement.classList.contains('ocupado')) {
+        console.log('Este asiento está ocupado.');
+    }
+}); */
 
 
 /* const mostrar = document.getElementById("libre");
