@@ -131,5 +131,5 @@ function actualizarCosto(){
 }
 
 
-const mostrar = document.getElementById("libre");
-mostrar.addEventListener('click',() =>{console.log('boton en funcion')});
+/* const mostrar = document.getElementById("libre");
+mostrar.addEventListener('click',() =>{console.log('boton en funcion')}); */
