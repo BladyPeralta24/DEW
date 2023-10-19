@@ -145,17 +145,3 @@ function actualizarCosto(){
     elementoCosteTotal.textContent = teatroActual.precioBoleto;
 }
 
-/* document.getElementById('asiento-container').addEventListener('click', (event) => {
-    const clickedElement = event.target;
-    if (clickedElement.classList.contains('libre')) {
-        const asientoId = clickedElement.id;
-        const [_, fila, columna] = asientoId.split('-');
-        console.log(`Funciona el botón en el asiento. Fila: ${fila}, Columna: ${columna}`);
-    } else if (clickedElement.classList.contains('ocupado')) {
-        console.log('Este asiento está ocupado.');
-    }
-}); */
-
-
-/* const mostrar = document.getElementById("libre");
-mostrar.addEventListener('click',() =>{console.log('boton en funcion')}); */
