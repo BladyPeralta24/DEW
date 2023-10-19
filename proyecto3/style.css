@@ -92,6 +92,18 @@ button{
     box-shadow: 0px 0px 10px 5px rgba(1, 0, 0, 0.5);
 }
 
+.en_reserva{
+    color: black;
+    width: 30px;
+    height: 30px;
+    background-color: orange;
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 10px 5px rgba(1, 0, 0, 0.5);
+}
+
 #asiento-container{
     margin: 20px;
 }
