@@ -34,7 +34,7 @@ class Teatro{
         return asiento;
     }
 
-    //Método para reservar un asiento
+/*     //Método para reservar un asiento
     reservarAsiento(fila, columna){
         if (this.asientos[fila][columna] === 'libre'){
             this.asientosReservados[fila][columna] = true;
@@ -42,6 +42,17 @@ class Teatro{
             return true;
         }else{
             return false;
+        }
+    } */
+
+    // Método para reservar un asiento
+    reservarAsiento(fila, columna) {
+        if (!this.asientosReservados[fila][columna] && !this.asientosConfirmados[fila][columna] && this.asientos[fila][columna].inmutable === false) {
+          this.asientosReservados[fila][columna] = true;
+          // Se podría considerar guardar el estado en almacenamiento local aquí
+          return true;
+        } else {
+          return false;
         }
     }
 
@@ -54,6 +65,8 @@ class Teatro{
             return false;
         }
     }
+
+
 
     // Método para calcular el total de la reserva y los asientos seleccionados
     calcularReserva(){
