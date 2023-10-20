@@ -34,7 +34,7 @@ class Teatro{
         return asiento;
     }
 
-/*     //Método para reservar un asiento
+/*      //Método para reservar un asiento
     reservarAsiento(fila, columna){
         if (this.asientos[fila][columna] === 'libre'){
             this.asientosReservados[fila][columna] = true;
@@ -45,7 +45,7 @@ class Teatro{
         }
     } */
 
-    // Método para reservar un asiento
+     // Método para reservar un asiento
     reservarAsiento(fila, columna) {
         if (!this.asientosReservados[fila][columna] && !this.asientosConfirmados[fila][columna] && this.asientos[fila][columna].inmutable === false) {
           this.asientosReservados[fila][columna] = true;
@@ -133,21 +133,25 @@ class Teatro{
                             elementoAsiento.classList.remove('libre');
                             elementoAsiento.classList.add('en_reserva');
                             console.log(`Asiento seleccionado: ${asientoId}`);
+                            teatroActual.reservarAsiento(i,j); // Llama al metodo reservarAsiento
+                            actualizarCosto(); // actualiza el costo despues de reservar
                         } else {
                             // Desmarcar el asiento cuando se hace clic nuevamente
                             elementoAsiento.classList.remove('en_reserva');
                             elementoAsiento.classList.add('libre');
+                            teatroActual.liberarAsiento(i,j); // Llama al método liberarAsiento
+                            //actualizarCosto(); // Actualiza el costo despues de liberar
                         }
                     }
                 });
                 
-                // Consultar el satado de los asientos en las matrices
+                // Consultar el estado de los asientos en las matrices
                 if(this.asientosReservados[i][j]){
                     console.log(elementoAsiento.className = 'en_reserva');
                     console.log(elementoAsiento.id = 'en_reserva');
                 } else if (this.asientosConfirmados[i][j]){
-                    console.log(elementoAsiento.className = 'ocupado');
-                    console.log(elementoAsiento.id = 'ocupado');
+                    console.log(elementoAsiento.className = 'reservado');
+                    console.log(elementoAsiento.id = 'reservado');
                 } else {
                     console.log(elementoAsiento.className = 'libre');
                     console.log(elementoAsiento.id = 'libre');
@@ -179,13 +183,14 @@ const teatro1 = new Teatro("The First Slam Dunk", 8, 10, 10);
 const teatro2 = new Teatro("Saw X", 10, 12, 12);
 const teatro3 = new Teatro("Avatar", 12, 15, 10);
 
-let teatroActual = teatro1;
+let teatroActual;
 
 function mostrarAsientos(teatro){
     const asientoContenedor = document.getElementById('asiento-container');
     const costoContenedor = document.getElementById('costo-container');
     teatroActual = teatro;
     teatroActual.mostrarAsientos();
+    cambiarEstadoAsientos();
     actualizarCosto();
     asientoContenedor.style.display = 'block';
     costoContenedor.style.display = 'block';
@@ -207,7 +212,7 @@ function cambiarEstadoAsientos(){
 
     // Cambia la clase de "en_reserva" a "ocupado" para cada asiento en reserva
     for (let i= 0; i < asientoEnReserva.length; i++){
-        asientoEnReserva[i].classList.add('ocupado');
+        asientoEnReserva[i].classList.add('reservado');
         asientoEnReserva[i].classList.remove('en_reserva');
     }
 
