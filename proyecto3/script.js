@@ -6,13 +6,14 @@ class Teatro{
         this.precioBoleto = precioBoleto;
         this.filas = filas;
         this.columnas = columnas;
-
+        
         //Creamos una matriz de asientos aleatorios
         //this.asientos = Array(filas).fill().map(() => Array(columnas).fill().map(() => Math.random() < 0.5 ? 'libre' : 'ocupado'));
         this.asientos = this.generarAsientos();
         //Inicializamos las matrices para el seguimiento de asientos reservados y confirmados
         this.asientosReservados = Array(filas).fill().map(() => Array(columnas).fill(false));
         this.asientosConfirmados = Array(filas).fill().map(() => Array(columnas).fill(false));
+
     }
 
     //Creacion de metodos de la clase
@@ -34,16 +35,7 @@ class Teatro{
         return asiento;
     }
 
-/*      //Método para reservar un asiento
-    reservarAsiento(fila, columna){
-        if (this.asientos[fila][columna] === 'libre'){
-            this.asientosReservados[fila][columna] = true;
-            // Se podria considerar guardar el estado en almacenamiento local aquí
-            return true;
-        }else{
-            return false;
-        }
-    } */
+
 
      // Método para reservar un asiento
     reservarAsiento(fila, columna) {
@@ -71,18 +63,29 @@ class Teatro{
     // Método para calcular el total de la reserva y los asientos seleccionados
     calcularReserva(){
         let cantidad = 0;  // Inicializamos la cantidad en 0
+
+        // Crear un array para almacenar las ubicaciones de los asientos seleccionados
         let asientosSeleccionados = [];
 
+
+        // Recorre todas las filas de asientos
         for(let i = 0; i < this.filas; i++){
+            // Recorre todas las columnas de asientos en cada fila
             for(let j = 0; j < this.columnas; j++){
-                if (this.asientosReservados[i][j] || this.asientosConfirmados[i][j]){
-                    cantidad ++; // incrementa la cantidad por cada asiento reservado o confirmado
+                // Verifica si un asiento está reservado
+                if (this.asientosReservados[i][j]){
+                    cantidad ++; // Incrementa la cantidad por cada asiento reservado
+                    // Agrega la ubicación del asiento (fila y columna) al array de asientos seleccionados
                     asientosSeleccionados.push(`${i + 1}-${j + 1}`);
                 }
+                
             }
         }
+
+        // Calcula el precio total multiplicando la cantidad de asientos por el precio del boleto
         let precioTotal = cantidad * this.precioBoleto;
 
+        // Retorna un objeto con la cantidad de asientos seleccionados, el precio total y la lista de asientos seleccionados
         return {cantidad, precioTotal, asientosSeleccionados};
     }
 
@@ -133,19 +136,23 @@ class Teatro{
                             elementoAsiento.classList.remove('libre');
                             elementoAsiento.classList.add('en_reserva');
                             console.log(`Asiento seleccionado: ${asientoId}`);
-                            teatroActual.reservarAsiento(i,j); // Llama al metodo reservarAsiento
+                            console.log(elementoAsiento.className = 'en_reserva');
+                            console.log(elementoAsiento.id = 'en_reserva');
+                            this.reservarAsiento(i,j); // Llama al metodo reservarAsiento
                             actualizarCosto(); // actualiza el costo despues de reservar
                         } else {
                             // Desmarcar el asiento cuando se hace clic nuevamente
                             elementoAsiento.classList.remove('en_reserva');
                             elementoAsiento.classList.add('libre');
-                            teatroActual.liberarAsiento(i,j); // Llama al método liberarAsiento
-                            //actualizarCosto(); // Actualiza el costo despues de liberar
+                            console.log(elementoAsiento.className = 'libre');
+                            console.log(elementoAsiento.id = 'libre');
+                            this.liberarAsiento(i,j); // Llama al método liberarAsiento
+                            actualizarCosto();
                         }
                     }
                 });
                 
-                // Consultar el estado de los asientos en las matrices
+                /* // Consultar el estado de los asientos en las matrices
                 if(this.asientosReservados[i][j]){
                     console.log(elementoAsiento.className = 'en_reserva');
                     console.log(elementoAsiento.id = 'en_reserva');
@@ -155,7 +162,7 @@ class Teatro{
                 } else {
                     console.log(elementoAsiento.className = 'libre');
                     console.log(elementoAsiento.id = 'libre');
-                }
+                } */
 
 
                 // Verificar si el asiento está reservado y asignar la clase y el ID correspondientes
@@ -202,6 +209,7 @@ function actualizarCosto(){
     const costoReserva = teatroActual.calcularReserva().precioTotal;
     elementoCosteTotal.textContent = costoReserva;
 }
+
 
 
 
