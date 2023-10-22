@@ -9,11 +9,30 @@ class Teatro{
         
         //Creamos una matriz de asientos aleatorios
         //this.asientos = Array(filas).fill().map(() => Array(columnas).fill().map(() => Math.random() < 0.5 ? 'libre' : 'ocupado'));
-        this.asientos = this.generarAsientos();
+        //this.asientos = this.generarAsientos();
         //Inicializamos las matrices para el seguimiento de asientos reservados y confirmados
         this.asientosReservados = Array(filas).fill().map(() => Array(columnas).fill(false));
         this.asientosConfirmados = Array(filas).fill().map(() => Array(columnas).fill(false));
 
+        // Comprobar si los asientos ya existen en el almacenamiento local
+        const guardarAsiento = localStorage.getItem('guardarAsiento');
+        if(guardarAsiento){
+            this.asientos = JSON.parse(guardarAsiento);
+        }else{
+            // Generar asientos aleatorios y guardarlos en el almacenamiento local
+            this.asientos = this.generarAsientos();
+            localStorage.setItem('guardarAsiento', JSON.stringify(this.asientos));
+        }
+
+    }
+
+
+    // Metodo para registrar una compra
+    registrarCompra(){
+        const compra = this.calcularReserva(); // Obtener la informacion de la reserva
+        const comprasAnteriores = JSON.parse(sessionStorage.getItem('compras')) || [];
+        comprasAnteriores.push(compra);
+        sessionStorage.setItem('compras', JSON.stringify(comprasAnteriores));
     }
 
     //Creacion de metodos de la clase
@@ -41,14 +60,14 @@ class Teatro{
     reservarAsiento(fila, columna) {
         if (!this.asientosReservados[fila][columna] && !this.asientosConfirmados[fila][columna] && this.asientos[fila][columna].inmutable === false) {
           this.asientosReservados[fila][columna] = true;
-          // Se podría considerar guardar el estado en almacenamiento local aquí
+          this.asientos[fila][columna].inmutable = true; // Aqui deberia marcar los asientos como "ocupado"
           return true;
         } else {
           return false;
         }
     }
 
-    // Método para lberar un asiento previamente confirmado
+/*     // Método para lberar un asiento previamente confirmado
     liberarAsiento(fila,columna){
         if (this.asientosConfirmados[fila][columna]){
             this.asientosConfirmados[fila][columna] = false;
@@ -56,7 +75,7 @@ class Teatro{
         }else{
             return false;
         }
-    }
+    } */
 
 
 
@@ -73,7 +92,7 @@ class Teatro{
             // Recorre todas las columnas de asientos en cada fila
             for(let j = 0; j < this.columnas; j++){
                 // Verifica si un asiento está reservado
-                if (this.asientosReservados[i][j]){
+                if (this.asientosReservados[i][j] && this.asientos[i][j].inmutable){
                     cantidad ++; // Incrementa la cantidad por cada asiento reservado
                     // Agrega la ubicación del asiento (fila y columna) al array de asientos seleccionados
                     asientosSeleccionados.push(`${i + 1}-${j + 1}`);
@@ -89,10 +108,21 @@ class Teatro{
         return {cantidad, precioTotal, asientosSeleccionados};
     }
 
+    quitarAsiento(fila, columna){
+        if(fila >= 0 && fila < this.filas && columna >= 0 && columna < this.columnas){
+            if (this.asientosReservados[fila][columna]){
+                this.asientosReservados[fila][columna] = false;
+                return true;
+            }
+        }
+        return false;
+    }
+
     // Metodo para mostrar los asientos usando DOM
     mostrarAsientos() {
         // Obtener el contenedor de asientos por su ID
         const asientoContenedor = document.getElementById('asiento-container');
+        const elementoCosteTotal = document.getElementById('costo-total');
     
         // Limpiar cualquier contenido existente en el contenedor
         asientoContenedor.innerHTML = '';
@@ -121,6 +151,12 @@ class Teatro{
                 if (this.asientos[i][j]) {
                     elementoAsiento.classList.add('inmutable');
                 }
+
+                // Verificar si el asiento esta reservado y agregar la clase 'reservado' si es el caso
+                if (this.asientos[i][j]) {
+                    elementoAsiento.classList.add('reserva');
+                }
+
     
                 // Crear un ID único para cada asiento basado en fila y columna
                 const asientoId = `asiento-${i}-${j}`;
@@ -128,9 +164,9 @@ class Teatro{
 
                 
     
-                // Agregar un evento de clic al asiento
+                /* // Agregar un evento de clic al asiento
                 elementoAsiento.addEventListener('click', () => {
-                    if (!asiento.inmutable) {
+                    if (!asiento.inmutable || !asiento.reserva) {
                         if (!elementoAsiento.classList.contains('en_reserva')) {
                             // Marcar el asiento como en reserva cuando se selecciona
                             elementoAsiento.classList.remove('libre');
@@ -139,7 +175,7 @@ class Teatro{
                             console.log(elementoAsiento.className = 'en_reserva');
                             console.log(elementoAsiento.id = 'en_reserva');
                             this.reservarAsiento(i,j); // Llama al metodo reservarAsiento
-                            actualizarCosto(); // actualiza el costo despues de reservar
+                            this.actualizarCosto(elementoCosteTotal); // actualiza el costo despues de reservar
                         } else {
                             // Desmarcar el asiento cuando se hace clic nuevamente
                             elementoAsiento.classList.remove('en_reserva');
@@ -147,22 +183,77 @@ class Teatro{
                             console.log(elementoAsiento.className = 'libre');
                             console.log(elementoAsiento.id = 'libre');
                             this.liberarAsiento(i,j); // Llama al método liberarAsiento
-                            actualizarCosto();
+                            this.quitarAsiento(i,j);
+                            this.actualizarCosto(elementoCosteTotal);
                         }
                     }
-                });
+                }); */
+
+                // Agregar evento onclick para reservar o liberar asientos
+                elementoAsiento.onclick = () => {
+                    if (!asiento.inmutable || !asiento.reserva) {
+                        if (!elementoAsiento.classList.contains('en_reserva')) {
+                            // Marcar el asiento como en reserva cuando se selecciona
+                            elementoAsiento.classList.remove('libre');
+                            elementoAsiento.classList.add('en_reserva');
+                            console.log(`Asiento seleccionado: ${asiento.number}`);
+                            console.log(elementoAsiento.className = 'en_reserva');
+                            console.log(elementoAsiento.id = 'en_reserva');
+                            this.reservarAsiento(i, j); // Llama al método reservarAsiento
+                            this.actualizarCosto(elementoCosteTotal); // Actualiza el costo después de reservar
+                        } else {
+                            // Desmarcar el asiento cuando se hace clic nuevamente
+                            elementoAsiento.classList.remove('en_reserva');
+                            elementoAsiento.classList.add('libre');
+                            console.log(elementoAsiento.className = 'libre');
+                            console.log(elementoAsiento.id = 'libre');
+                            // this.liberarAsiento(i, j); // Llama al método liberarAsiento
+                            this.quitarAsiento(i, j);
+                            this.actualizarCosto(elementoCosteTotal);
+                        }
+                    }
+                };
+
+                // Agregar evento onmouseover para mostrar un tooltip
+                elementoAsiento.onmouseover = () =>{
+                    // mostrar un tooltip al lado del cursor
+                    const tooltip = document.createElement('div');
+                    tooltip.className = 'tooltip';
+
+                    // Definir el contenido del tooltup segun el estado del asiento
+                    if (asiento.inmutable){
+                        tooltip.textContent = 'Ocupado';
+                    } else if (this.asientosReservados[i][j]){
+                        tooltip.textContent = 'Asiento reservado';
+                    } else if (asiento.reserva){
+                        tooltip.textContent = 'Asiento en reserva';
+                    } else {
+                        tooltip.textContent = 'Asiento libre';
+                    }
+
+                    // Posicionar el tooltip al cuerpo del documento
+                    document.body.appendChild(tooltip);
+
+                    // Manejar el evento onmouseout para ocultar el tooltip
+                    elementoAsiento.onmouseout = () =>{
+                        tooltip.remove();
+                    }
+                }
+
+                elementoAsiento.onmousedown = () => {
+                    if (!asiento.inmutable || !asiento.reserva){
+                        console.log('Has seleccionado un asiento libre para reservar');
+                    }
+                }
+
+                elementoAsiento.onmouseup = () => {
+                    if (!asiento.inmutable || !asiento.reserva) {
+                        console.log('El asiento ha cambiado de estado');
+                    }
+                }
+
                 
-                /* // Consultar el estado de los asientos en las matrices
-                if(this.asientosReservados[i][j]){
-                    console.log(elementoAsiento.className = 'en_reserva');
-                    console.log(elementoAsiento.id = 'en_reserva');
-                } else if (this.asientosConfirmados[i][j]){
-                    console.log(elementoAsiento.className = 'reservado');
-                    console.log(elementoAsiento.id = 'reservado');
-                } else {
-                    console.log(elementoAsiento.className = 'libre');
-                    console.log(elementoAsiento.id = 'libre');
-                } */
+                
 
 
                 // Verificar si el asiento está reservado y asignar la clase y el ID correspondientes
@@ -181,6 +272,12 @@ class Teatro{
             // Agregar la fila completa al contenedor de asientos
             asientoContenedor.appendChild(elementoFila);
         }
+    }
+
+    // Metodo para actualizar el costo total
+    actualizarCosto(elementoCostoTotal){
+        const costoReserva = this.calcularReserva().precioTotal;
+        elementoCostoTotal.textContent = costoReserva;
     }
 }
 
@@ -220,16 +317,41 @@ function cambiarEstadoAsientos(){
 
     // Cambia la clase de "en_reserva" a "ocupado" para cada asiento en reserva
     for (let i= 0; i < asientoEnReserva.length; i++){
+        
         asientoEnReserva[i].classList.add('reservado');
         asientoEnReserva[i].classList.remove('en_reserva');
     }
 
     // Actualizar el costo total
     actualizarCosto();
+    
 }
+  
+
+
 
 // obtener una referencia al boton "Reservar" por su ID
 const reservarButton = document.getElementById('reservar-button');
+const liberarButton = document.getElementById('liberar-button');
+const confirmarCompraButton = document.getElementById('confirmar-compra');
+
+// Agregar un evento de clic al boton de confirmar compra
+confirmarCompraButton.onclick = () =>{
+    if(teatroActual){
+        const reserva = teatroActual.calcularReserva();
+        if(reserva.cantidad > 0){
+            teatroActual.registrarCompra();
+            console.log('Compra registrada');
+            alert('Compra registrada. Gracias por su compra.');
+            sessionStorage.removeItem('guardarAsiento'); // Limpia los asientos despues de la compra
+            location.reload(); // Recargar la página para reiniciar
+        } else {
+            console.log('No se ha seleccionado ningun asiento.');
+            alert ('No se ha seleccionado ningun asiento.');
+        }
+        
+    }
+}
 
 // Agregar un evento de clic al boton "Reservar" que llama a la funcion
 reservarButton.addEventListener('click', cambiarEstadoAsientos);
