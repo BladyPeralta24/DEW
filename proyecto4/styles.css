@@ -95,7 +95,10 @@ td {
 
 .temporizador {
     border: 1px solid black;
-    margin-left: 50px;
+    margin: auto;
     text-align: center;
     font-size: 50px;
+    width: 400px;
+    display: flex;
+    justify-content: center;
 }
