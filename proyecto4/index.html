@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slide Puzzle</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Slide Puzzle</h1>
+    </header>
+    <div class="container">
+        <div class="puzzle">
+            <table>
+                <tr>
+                    <td id="pieza-1" class="pieza"></td>
+                    <td id="pieza-2" class="pieza"></td>
+                    <td id="pieza-3" class="pieza"></td>
+                </tr>
+                <tr>
+                    <td id="pieza-4" class="pieza"></td>
+                    <td id="pieza-5" class="pieza"></td>
+                    <td id="pieza-6" class="pieza"></td>
+                </tr>
+                <tr>
+                    <td id="pieza-7" class="pieza"></td>
+                    <td id="pieza-8" class="pieza"></td>
+                    <td id="pieza-vacia" class="pieza"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="boton">
+            <button class="inicio">INICIO</button>
+            <span id="movimientos">0</span>
+        </div>
+        <div class="temporizador">
+            Tiempo: <span id="minutos">00</span>:<span id="segundos">00</span>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
