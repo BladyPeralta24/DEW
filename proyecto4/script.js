@@ -7,7 +7,7 @@
 */
 // Funcionalidad de las piezas
 
-document.querySelector('.inicio').addEventListener('click', function() {
+/* document.querySelector('.inicio').addEventListener('click', function() {
     var piezas = Array.from(document.querySelectorAll('.pieza:not(#pieza-vacia)'));
     var ids = piezas.map(function(pieza) {
         return pieza.id;
@@ -23,18 +23,39 @@ document.querySelector('.inicio').addEventListener('click', function() {
     piezas.forEach(function(pieza, index) {
         pieza.id = ids[index];
     });
-});
+}); */
 
 
-// Función para comprobar si el puzzle está completo
-function isPuzzleComplete() {
-    var piezas = Array.from(document.querySelectorAll('.pieza:not(#pieza-vacia)'));
-    for (var i = 0; i < piezas.length; i++) {
-        if (piezas[i].id !== 'pieza-' + (i + 1)) {
-            return false;
-        }
-    }
-    return true;
+
+
+let leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || [];
+
+// Funcion para mostrar el leaderboard
+function mostrarLeaderboard(){
+    // Ordenar el leaderboard por tiempo (ascendente)
+    leaderboard.sort((a,b) => a.tiempo - b.tiempo);
+
+    // Crear una tabla para mostrar el leaderboard
+    let tablaLeaderboard = document.createElement('table');
+    tablaLeaderboard.innerHTML = '<tr><th>Nombre</th><th>Tiempo</th><th>Moviemientos</th></tr>';
+
+    leaderboard.forEach(function (jugador){
+        let fila = document.createElement('tr');
+        fila.innerHTML = `<td>${jugador.nombre}</td><td>${jugador.tiempo} segundos</td><td>${jugador.movimientos}</td>`;
+        tablaLeaderboard.appendChild(fila);
+    });
+
+    // mostrar el leaderboard en el elemento HTML
+    let leaderboardContainer = document.querySelector('#leaderboard');
+    leaderboardContainer.innerHTML = '';
+    leaderboardContainer.appendChild(tablaLeaderboard);
+}
+
+// Funcion para registrar el resultado en el leaderboard
+function registrarResultadoEnLeaderboard(nombre, tiempo, movimientos){
+    leaderboard.push({nombre, tiempo, movimientos});
+    localStorage.setItem('leaderboard', JSON.stringify(leaderboard));
+    mostrarLeaderboard();
 }
 
 // Variable para contar los movimientos
@@ -46,11 +67,14 @@ var contadorMovimientos = document.querySelector('#movimientos');
 // Función para comprobar si el puzzle está completo
 function isPuzzleComplete() {
     var piezas = Array.from(document.querySelectorAll('.pieza:not(#pieza-vacia)'));
-    for (var i = 0; i < piezas.length; i++) {
+    for (var i = 1; i < piezas.length; i++) {
         if (piezas[i].id !== 'pieza-' + (i + 1)) {
+            console.log('todavia falta');
             return false;
         }
     }
+    // detenerTemporizador();
+    console.log('Puzzle completado');
     return true;
 }
 
@@ -88,6 +112,7 @@ try {
                     // Comprobar si el puzzle está completo después de mover una pieza
                     if (isPuzzleComplete()) {
                         alert('¡Has completado el puzzle con éxito en ' + movimientos + ' movimientos!');
+                        detenerTemporizador(); // Detener el temporizador cuando el puzzle está completo
                     }
                 }
             } catch (error) {
@@ -132,22 +157,57 @@ function detenerTemporizador() {
     }
 }
 
-// Iniciar el temporizador cuando se hace clic en el botón de inicio
+/* // Iniciar el temporizador cuando se hace clic en el botón de inicio
 document.querySelector('.inicio').addEventListener('click', function() {
     segundos = 0;
     minutos = 0;
     contadorSegundos.textContent = '00';
     contadorMinutos.textContent = '00';
     iniciarTemporizador();
+
+    // Detener el temporizador y comprobar si es el mejor tiempo cuando se completa el puzzle
+    if (isPuzzleComplete()) {
+        detenerTemporizador();
+        console.log('puzzle completo');
+        /let nombreJugador = prompt('Ingresa tu nombre para registrar tu resultado en el leaderboard:');
+        alert('¡Has terminado el puzzle con exito en ' + movimientos + ' movimientos!');
+        registrarResultadoEnLeaderboard(nombreJugador, minutos * 60 + segundos, movimientos);
+        mostrarLeaderboard(); // MOstrar el leaderboard despues de registrar el resultado
+        ingresarNombreYMostrarLeaderboard();
+        alert('¡Has terminado el puzzle con éxito en ' + movimientos + ' movimientos!');
+    }
+}); */
+
+
+document.querySelector('.inicio').addEventListener('click', function() {
+    // Obtener las piezas 5, 6 y 8
+    var pieza5 = document.getElementById('pieza-5');
+    var pieza6 = document.getElementById('pieza-6');
+    var pieza8 = document.getElementById('pieza-8');
+
+    // Guardar el id de la pieza-5 antes de cambiarlo
+    var idPieza5 = pieza5.id;
+
+    // Cambiar las posiciones de las piezas
+    pieza5.id = pieza6.id;
+    pieza6.id = pieza8.id;
+    pieza8.id = idPieza5;
+
+    
+    segundos = 0;
+    minutos = 0;
+    contadorSegundos.textContent = '00';
+    contadorMinutos.textContent = '00';
+    iniciarTemporizador();
+
+    // Detener el temporizador y comprobar si es el mejor tiempo cuando se completa el puzzle
+    if (isPuzzleComplete()) {
+        detenerTemporizador();
+        console.log('puzzle completo');
+        let nombreJugador = prompt('Ingresa tu nombre para registrar tu resultado en el leaderboard:');
+        alert('¡Has terminado el puzzle con exito en ' + movimientos + ' movimientos!');
+        registrarResultadoEnLeaderboard(nombreJugador, minutos * 60 + segundos, movimientos);
+        mostrarLeaderboard(); // MOstrar el leaderboard despues de registrar el resultado
+    }
+    
 });
-
-// Detener el temporizador y comprobar si es el mejor tiempo cuando se completa el puzzle
-if (isPuzzleComplete()) {
-    detenerTemporizador();
-}
-
-
-
-
-
-
