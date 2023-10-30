@@ -2,7 +2,7 @@
     Creador: Bladimir Peralta Herrera
     Nombre del proyecto: Slide puzzle
     Fase: Alfa
-    version: 0.0.0
+    version: 1.0.0
     Estado: incompleto
 */
 // Funcionalidad de las piezas
@@ -156,27 +156,6 @@ function detenerTemporizador() {
         alert('¡Nuevo récord! Has completado el puzzle en ' + minutos + ' minutos y ' + segundos + ' segundos.');
     }
 }
-
-/* // Iniciar el temporizador cuando se hace clic en el botón de inicio
-document.querySelector('.inicio').addEventListener('click', function() {
-    segundos = 0;
-    minutos = 0;
-    contadorSegundos.textContent = '00';
-    contadorMinutos.textContent = '00';
-    iniciarTemporizador();
-
-    // Detener el temporizador y comprobar si es el mejor tiempo cuando se completa el puzzle
-    if (isPuzzleComplete()) {
-        detenerTemporizador();
-        console.log('puzzle completo');
-        /let nombreJugador = prompt('Ingresa tu nombre para registrar tu resultado en el leaderboard:');
-        alert('¡Has terminado el puzzle con exito en ' + movimientos + ' movimientos!');
-        registrarResultadoEnLeaderboard(nombreJugador, minutos * 60 + segundos, movimientos);
-        mostrarLeaderboard(); // MOstrar el leaderboard despues de registrar el resultado
-        ingresarNombreYMostrarLeaderboard();
-        alert('¡Has terminado el puzzle con éxito en ' + movimientos + ' movimientos!');
-    }
-}); */
 
 
 document.querySelector('.inicio').addEventListener('click', function() {
