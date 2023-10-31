@@ -65,63 +65,91 @@ var movimientos = 0;
 var contadorMovimientos = document.querySelector('#movimientos');
 
 // Función para comprobar si el puzzle está completo
-function isPuzzleComplete() {
+/* function isPuzzleComplete() {
     var piezas = Array.from(document.querySelectorAll('.pieza:not(#pieza-vacia)'));
-    for (var i = 1; i < piezas.length; i++) {
-        if (piezas[i].id !== 'pieza-' + (i + 1)) {
+    for (var i = 0; i < piezas.length; i++) {
+
+        if (piezas[i].id !== 'pieza-' + (i + 1)){
             console.log('todavia falta');
             return false;
         }
     }
-    // detenerTemporizador();
+
     console.log('Puzzle completado');
     return true;
+} */
+
+// Funcion que arregla al anterior Funcion
+function isPuzzleComplete() {
+    var piezas = Array.from(document.querySelectorAll('.pieza:not(#pieza-vacia)'));
+    var rows = 3;
+    var cols = 3;
+    var puzzleSolved = true;
+
+    for (let i = 0; i < piezas.length; i++) {
+        var pieza = piezas[i];
+        var row = Math.floor(i / cols);
+        var col = i % cols;
+        var expectedId = 'pieza-' + (row * cols + col + 1);
+
+        if (pieza.id !== expectedId) {
+            puzzleSolved = false;
+            break;
+        }
+    }
+
+    return puzzleSolved;
 }
+
+
 
 // Función para intercambiar dos elementos
 function swapElements(obj1, obj2) {
-    try {
+    // Verificar si los elementos son válidos antes de realizar el intercambio
+    if (obj1 && obj2 && obj1.parentNode && obj2.parentNode) {
         var temp = document.createElement("div");
         obj1.parentNode.insertBefore(temp, obj1);
         obj2.parentNode.insertBefore(obj1, obj2);
         temp.parentNode.insertBefore(obj2, temp);
         temp.parentNode.removeChild(temp);
-    } catch (error) {
-        console.log("Error al intercambiar elementos: ", error);
+    } else {
+        console.log("Error: Los elementos proporcionados no son válidos para intercambiar.");
     }
 }
 
-try {
-    var piezas = Array.from(document.querySelectorAll('.pieza'));
+
+var piezas = Array.from(document.querySelectorAll('.pieza'));
+if (piezas.length > 0) {
     piezas.forEach(function(pieza) {
         pieza.addEventListener('click', function() {
-            try {
-                var piezaVacia = document.querySelector('#pieza-vacia');
-                var esAdyacente = 
-                    (pieza.cellIndex === piezaVacia.cellIndex && Math.abs(pieza.parentNode.rowIndex - piezaVacia.parentNode.rowIndex) === 1) ||
-                    (pieza.parentNode.rowIndex === piezaVacia.parentNode.rowIndex && Math.abs(pieza.cellIndex - piezaVacia.cellIndex) === 1);
+            var piezaVacia = document.querySelector('#pieza-vacia');
+            if (!piezaVacia) {
+                console.error("Error: No se encontró la pieza vacía.");
+                return;
+            }
 
-                if (esAdyacente) {
-                    console.log('Moviendo la pieza: ', pieza.id); // Agregar esta línea
-                    swapElements(pieza, piezaVacia);
-                    movimientos++; // Incrementar el contador de movimientos
-                    contadorMovimientos.textContent = movimientos; // Actualizar el contador de movimientos en la página HTML
-                    console.log('Movimiento número: ', movimientos); // Imprimir el número de movimientos
-                    console.log('Piezas después del movimiento: ', Array.from(document.querySelectorAll('.pieza')).map(p => p.id).join(', ')); // Agregar esta línea
+            var esAdyacente =
+                (pieza.cellIndex === piezaVacia.cellIndex && Math.abs(pieza.parentNode.rowIndex - piezaVacia.parentNode.rowIndex) === 1) ||
+                (pieza.parentNode.rowIndex === piezaVacia.parentNode.rowIndex && Math.abs(pieza.cellIndex - piezaVacia.cellIndex) === 1);
 
-                    // Comprobar si el puzzle está completo después de mover una pieza
-                    if (isPuzzleComplete()) {
-                        alert('¡Has completado el puzzle con éxito en ' + movimientos + ' movimientos!');
-                        detenerTemporizador(); // Detener el temporizador cuando el puzzle está completo
-                    }
+            if (esAdyacente) {
+                console.log('Moviendo la pieza: ', pieza.id); // Agregar esta línea
+                swapElements(pieza, piezaVacia);
+                movimientos++; // Incrementar el contador de movimientos
+                contadorMovimientos.textContent = movimientos; // Actualizar el contador de movimientos en la página HTML
+                console.log('Movimiento número: ', movimientos); // Imprimir el número de movimientos
+                console.log('Piezas después del movimiento: ', Array.from(document.querySelectorAll('.pieza')).map(p => p.id).join(', ')); // Agregar esta línea
+
+                // Comprobar si el puzzle está completo después de mover una pieza
+                if (isPuzzleComplete()) {
+                    alert('¡Has completado el puzzle con éxito en ' + movimientos + ' movimientos!');
+                    detenerTemporizador(); // Detener el temporizador cuando el puzzle está completo
                 }
-            } catch (error) {
-                console.log("Error al manejar el evento click: ", error);
             }
         });
     });
-} catch (error) {
-    console.log("Error al configurar los controladores de eventos: ", error);
+} else {
+    console.error("Error: No se encontraron piezas para configurar los controladores de eventos.");
 }
 
 // Variables para el temporizador
@@ -157,6 +185,11 @@ function detenerTemporizador() {
     }
 }
 
+const elementoMensaje = document.getElementById("mensaje");
+function mostrarMensaje(){
+    elementoMensaje.textContent = 'Has completado el puzzle. ¡¡ Felicidades !!';
+}
+
 
 document.querySelector('.inicio').addEventListener('click', function() {
     // Obtener las piezas 5, 6 y 8
@@ -179,10 +212,12 @@ document.querySelector('.inicio').addEventListener('click', function() {
     contadorMinutos.textContent = '00';
     iniciarTemporizador();
 
+
     // Detener el temporizador y comprobar si es el mejor tiempo cuando se completa el puzzle
     if (isPuzzleComplete()) {
         detenerTemporizador();
-        console.log('puzzle completo');
+        console.log('puzzle completo. Fin del programa');
+        mostrarMensaje();
         let nombreJugador = prompt('Ingresa tu nombre para registrar tu resultado en el leaderboard:');
         alert('¡Has terminado el puzzle con exito en ' + movimientos + ' movimientos!');
         registrarResultadoEnLeaderboard(nombreJugador, minutos * 60 + segundos, movimientos);
