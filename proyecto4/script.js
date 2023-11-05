@@ -186,12 +186,37 @@ function detenerTemporizador() {
 }
 
 const elementoMensaje = document.getElementById("mensaje");
+elementoMensaje.style.display = 'none';
 function mostrarMensaje(){
+    elementoMensaje.style.display = 'block';
     elementoMensaje.textContent = 'Has completado el puzzle. ¡¡ Felicidades !!';
 }
 
+const playerName = document.querySelector('.jugador');
+playerName.style.display = 'none';
 
-document.querySelector('.inicio').addEventListener('click', function() {
+function showPlayer(){
+    playerName.style.display = 'block';
+}
+
+document.getElementById('botonGuardar').addEventListener('click', function(){
+    let nombreJugador = document.getElementById('nombreJugador').value;
+    if (nombreJugador.trim() !== ''){
+        // Guardar el nombre del jugador en el leaderboard
+        registrarResultadoEnLeaderboard(nombreJugador, minutos * 60 + segundos, movimientos);
+        mostrarLeaderboard(); // Actualizar la vista del leaderboard
+        playerName.style.display = 'none'; // Esconder el área de ingreso del nombre del jugador
+    } else {
+        // Manejar el caso en que el campo de nombre sté vacío
+        // Podrias mostrar un mensaje de error o realizar alguna accion aqui
+        console.log("El nombre del jugador no puede estar vacío.");
+    } 
+})
+
+
+
+// quitar los comentarios mas adelante
+/* document.querySelector('.inicio').addEventListener('click', function() {
     // Obtener las piezas 5, 6 y 8
     var pieza5 = document.getElementById('pieza-5');
     var pieza6 = document.getElementById('pieza-6');
@@ -213,15 +238,84 @@ document.querySelector('.inicio').addEventListener('click', function() {
     iniciarTemporizador();
 
 
+
     // Detener el temporizador y comprobar si es el mejor tiempo cuando se completa el puzzle
     if (isPuzzleComplete()) {
         detenerTemporizador();
         console.log('puzzle completo. Fin del programa');
         mostrarMensaje();
-        let nombreJugador = prompt('Ingresa tu nombre para registrar tu resultado en el leaderboard:');
+        showPlayer();
+        // let nombreJugador = prompt('Ingresa tu nombre para registrar tu resultado en el leaderboard:');
         alert('¡Has terminado el puzzle con exito en ' + movimientos + ' movimientos!');
         registrarResultadoEnLeaderboard(nombreJugador, minutos * 60 + segundos, movimientos);
-        mostrarLeaderboard(); // MOstrar el leaderboard despues de registrar el resultado
+        // mostrarLeaderboard(); // MOstrar el leaderboard despues de registrar el resultado
     }
     
+}); */
+
+document.querySelector('.inicio').addEventListener('click', function() {
+    var piezas = Array.from(document.querySelectorAll('.pieza'));
+    var piezaVacia = document.getElementById('pieza-vacia');
+
+    if (!piezaVacia) {
+        console.error("Error: No se encontró la pieza vacía.");
+        return;
+    }
+
+    // Lógica para mezclar las piezas al azar
+    for (let i = 0; i < 500; i++) { // Realizar 500 movimientos para mezclar
+        var piezasAdyacentes = obtenerPiezasAdyacentes(piezaVacia, piezas);
+        if (piezasAdyacentes.length > 0) {
+            var piezaAleatoria = piezasAdyacentes[Math.floor(Math.random() * piezasAdyacentes.length)];
+            swapElements(piezaAleatoria, piezaVacia);
+            piezaVacia = piezaAleatoria;
+        }
+    }
+
+    // Restablecer el contador de movimientos, el temporizador y mostrar el nombre del jugador si es su primer movimiento
+    movimientos = 0;
+    contadorMovimientos.textContent = movimientos;
+    segundos = 0;
+    minutos = 0;
+    contadorSegundos.textContent = '00';
+    contadorMinutos.textContent = '00';
+    iniciarTemporizador();
+
+    piezas.forEach(function(pieza) {
+        pieza.addEventListener('click', function() {
+            if (movimientos === 0) {
+                showPlayer();
+            }
+
+            var esAdyacente = esPiezaAdyacente(pieza, piezaVacia);
+
+            if (esAdyacente) {
+                swapElements(pieza, piezaVacia);
+                movimientos++;
+                contadorMovimientos.textContent = movimientos;
+
+                if (isPuzzleComplete()) {
+                    detenerTemporizador();
+                    mostrarMensaje();
+                    let nombreJugador = document.getElementById('nombreJugador').value;
+                    registrarResultadoEnLeaderboard(nombreJugador, minutos * 60 + segundos, movimientos);
+                    mostrarLeaderboard();
+                }
+            }
+        });
+    });
 });
+
+function obtenerPiezasAdyacentes(piezaVacia, piezas) {
+    return piezas.filter(pieza => esPiezaAdyacente(pieza, piezaVacia));
+}
+
+function esPiezaAdyacente(pieza, piezaVacia) {
+    return (
+        (pieza.cellIndex === piezaVacia.cellIndex && Math.abs(pieza.parentNode.rowIndex - piezaVacia.parentNode.rowIndex) === 1) ||
+        (pieza.parentNode.rowIndex === piezaVacia.parentNode.rowIndex && Math.abs(pieza.cellIndex - piezaVacia.cellIndex) === 1)
+    );
+}
+
+
+

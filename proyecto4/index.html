@@ -11,39 +11,44 @@
         <h1>Slide Puzzle</h1>
     </header>
     <div class="container">
-        <div class="puzzle">
-            <table>
-                <tr>
-                    <td id="pieza-1" class="pieza"></td>
-                    <td id="pieza-2" class="pieza"></td>
-                    <td id="pieza-3" class="pieza"></td>
-                </tr>
-                <tr>
-                    <td id="pieza-4" class="pieza"></td>
-                    <td id="pieza-5" class="pieza"></td>
-                    <td id="pieza-6" class="pieza"></td>
-                </tr>
-                <tr>
-                    <td id="pieza-7" class="pieza"></td>
-                    <td id="pieza-8" class="pieza"></td>
-                    <td id="pieza-vacia" class="pieza"></td>
-                </tr>
-            </table>
+        <div class="subcontainer-1">
+            <div class="puzzle">
+                <table>
+                    <tr>
+                        <td id="pieza-1" class="pieza"></td>
+                        <td id="pieza-2" class="pieza"></td>
+                        <td id="pieza-3" class="pieza"></td>
+                    </tr>
+                    <tr>
+                        <td id="pieza-4" class="pieza"></td>
+                        <td id="pieza-5" class="pieza"></td>
+                        <td id="pieza-6" class="pieza"></td>
+                    </tr>
+                    <tr>
+                        <td id="pieza-7" class="pieza"></td>
+                        <td id="pieza-8" class="pieza"></td>
+                        <td id="pieza-vacia" class="pieza"></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="boton">
+                <button class="inicio">INICIO</button>
+                <span id="movimientos">0</span>
+            </div>
+            <div id="mensaje"></div>
+            <div class="temporizador">
+                Tiempo -><span id="minutos">00</span>:<span id="segundos">00</span>
+            </div>
+            
         </div>
-        <div class="boton">
-            <button class="inicio">INICIO</button>
-            <span id="movimientos">0</span>
+        <div class="subcontainer-2">
+            <div id="leaderboard"></div>
+            <div class="jugador">
+                <p>NOMBRE:</p>
+                <input type="text" id="nombreJugador" placeholder="Ingresa tu nombre...">
+                <button id="botonGuardar">Guardar</button>
+            </div>
         </div>
-        <div id="mensaje"></div>
-        <div class="temporizador">
-            Tiempo -><span id="minutos">00</span>:<span id="segundos">00</span>
-        </div>
-        <div class="jugador">
-            <p>NOMBRE:</p>
-            <input type="text" id="nombreJugador" placeholder="Ingresa tu nombre...">
-            <button id="botonGuardar">Guardar</button>
-        </div>
-        <div id="leaderboard"></div>
     </div>
 
     <script src="script.js"></script>

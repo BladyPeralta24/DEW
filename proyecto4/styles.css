@@ -6,6 +6,10 @@ header{
 .container{
     /* border: 1px solid black; */
     margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
 }
 
 .puzzle{
@@ -66,8 +70,8 @@ td {
 .boton {
     /* border: 1px solid red; */
     padding: 20px;
-    display: flex;
-    justify-content: center;
+/*     display: flex;
+    justify-content: center; */
 }
 
 .inicio{
@@ -94,8 +98,8 @@ td {
     text-align: center;
     font-size: 50px;
     width: 500px;
-    display: flex;
-    justify-content: center;
+/*     display: flex;
+    justify-content: center; */
 }
 
 #movimientos {
@@ -112,38 +116,23 @@ td {
     text-align: center;
     font-size: 50px;
     width: 400px;
-    display: flex;
-    justify-content: center;
+/*     display: flex;
+    justify-content: center; */
 }
 
 #leaderboard{
     border: 1px solid black;
     margin-top: auto;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
+    float: right;
 }
 
 .jugador{
-    border: 1px solid black;
-    margin: auto;
-    margin-bottom: 10px;
-    padding: auto;
-    font-size: 25px;
+    font-size: 23px;
     width: 500px;
     height: 50px;
-    display: flex;
-    justify-content: center;
-    text-align: center;
+    text-align: center; 
 }
 
 #nombreJugador{
     border: 2px solid blue;
-}
-
-p{
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    margin: auto;
 }
