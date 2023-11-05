@@ -2,12 +2,13 @@
     Creador: Bladimir Peralta Herrera
     Nombre del proyecto: Slide puzzle
     Fase: Alfa
-    version: 1.0.0
+    version: 1.9.0
     Estado: incompleto
 */
-// Funcionalidad de las piezas
 
-/* document.querySelector('.inicio').addEventListener('click', function() {
+
+/* // Funcionalidad de las piezas
+document.querySelector('.inicio').addEventListener('click', function() {
     var piezas = Array.from(document.querySelectorAll('.pieza:not(#pieza-vacia)'));
     var ids = piezas.map(function(pieza) {
         return pieza.id;
@@ -23,9 +24,16 @@
     piezas.forEach(function(pieza, index) {
         pieza.id = ids[index];
     });
+
+    segundos = 0;
+    minutos = 0;
+    contadorSegundos.textContent = '00';
+    contadorMinutos.textContent = '00';
+    iniciarTemporizador();
+    // desactivar el boton despues de hacer clic
+    this.disabled = true; // Esto desactivará el botón
+ 
 }); */
-
-
 
 
 let leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || [];
@@ -56,6 +64,7 @@ function registrarResultadoEnLeaderboard(nombre, tiempo, movimientos){
     leaderboard.push({nombre, tiempo, movimientos});
     localStorage.setItem('leaderboard', JSON.stringify(leaderboard));
     mostrarLeaderboard();
+    localStorage.clear();
 }
 
 // Variable para contar los movimientos
@@ -79,10 +88,8 @@ var contadorMovimientos = document.querySelector('#movimientos');
     return true;
 } */
 
-// Funcion que arregla al anterior Funcion
 function isPuzzleComplete() {
     var piezas = Array.from(document.querySelectorAll('.pieza:not(#pieza-vacia)'));
-    var rows = 3;
     var cols = 3;
     var puzzleSolved = true;
 
@@ -94,12 +101,13 @@ function isPuzzleComplete() {
 
         if (pieza.id !== expectedId) {
             puzzleSolved = false;
-            break;
+            // break;
         }
     }
 
     return puzzleSolved;
 }
+
 
 
 
@@ -139,12 +147,6 @@ if (piezas.length > 0) {
                 contadorMovimientos.textContent = movimientos; // Actualizar el contador de movimientos en la página HTML
                 console.log('Movimiento número: ', movimientos); // Imprimir el número de movimientos
                 console.log('Piezas después del movimiento: ', Array.from(document.querySelectorAll('.pieza')).map(p => p.id).join(', ')); // Agregar esta línea
-
-                // Comprobar si el puzzle está completo después de mover una pieza
-                if (isPuzzleComplete()) {
-                    alert('¡Has completado el puzzle con éxito en ' + movimientos + ' movimientos!');
-                    detenerTemporizador(); // Detener el temporizador cuando el puzzle está completo
-                }
             }
         });
     });
@@ -192,30 +194,34 @@ function mostrarMensaje(){
     elementoMensaje.textContent = 'Has completado el puzzle. ¡¡ Felicidades !!';
 }
 
-const playerName = document.querySelector('.jugador');
+let nombreJugador = ''; //Variable para almacenar el nombre del jugador
+
+let playerName = document.querySelector('.jugador');
 playerName.style.display = 'none';
 
 function showPlayer(){
     playerName.style.display = 'block';
 }
 
+
 document.getElementById('botonGuardar').addEventListener('click', function(){
-    let nombreJugador = document.getElementById('nombreJugador').value;
-    if (nombreJugador.trim() !== ''){
+    let inputNombreJugador = document.getElementById('nombreJugador');
+    let nuevoNombreJugador = inputNombreJugador.value.trim();
+    if (nuevoNombreJugador !== ''){
+        nombreJugador = nuevoNombreJugador; // Actualizar la variable 'nombreJugador'
         // Guardar el nombre del jugador en el leaderboard
         registrarResultadoEnLeaderboard(nombreJugador, minutos * 60 + segundos, movimientos);
         mostrarLeaderboard(); // Actualizar la vista del leaderboard
         playerName.style.display = 'none'; // Esconder el área de ingreso del nombre del jugador
     } else {
-        // Manejar el caso en que el campo de nombre sté vacío
-        // Podrias mostrar un mensaje de error o realizar alguna accion aqui
         console.log("El nombre del jugador no puede estar vacío.");
-    } 
-})
+    }
+
+    
+});
 
 
 
-// quitar los comentarios mas adelante
 /* document.querySelector('.inicio').addEventListener('click', function() {
     // Obtener las piezas 5, 6 y 8
     var pieza5 = document.getElementById('pieza-5');
@@ -237,85 +243,87 @@ document.getElementById('botonGuardar').addEventListener('click', function(){
     contadorMinutos.textContent = '00';
     iniciarTemporizador();
 
+    // desactivar el boton despues de hacer clic
+    this.disabled = true; // Esto desactivará el botón
 
-
-    // Detener el temporizador y comprobar si es el mejor tiempo cuando se completa el puzzle
-    if (isPuzzleComplete()) {
-        detenerTemporizador();
-        console.log('puzzle completo. Fin del programa');
-        mostrarMensaje();
-        showPlayer();
-        // let nombreJugador = prompt('Ingresa tu nombre para registrar tu resultado en el leaderboard:');
-        alert('¡Has terminado el puzzle con exito en ' + movimientos + ' movimientos!');
-        registrarResultadoEnLeaderboard(nombreJugador, minutos * 60 + segundos, movimientos);
-        // mostrarLeaderboard(); // MOstrar el leaderboard despues de registrar el resultado
-    }
-    
 }); */
 
 document.querySelector('.inicio').addEventListener('click', function() {
-    var piezas = Array.from(document.querySelectorAll('.pieza'));
-    var piezaVacia = document.getElementById('pieza-vacia');
+    var piezas = Array.from(document.querySelectorAll('.pieza:not(#pieza-vacia)'));
+    var piezasIds = piezas.map(function(pieza) {
+        return pieza.id;
+    });
 
-    if (!piezaVacia) {
-        console.error("Error: No se encontró la pieza vacía.");
-        return;
-    }
+    // Función para barajar las piezas
+    function barajarPiezas(piezasIds) {
+        let currentIndex = piezasIds.length, tempValue, randomIndex;
 
-    // Lógica para mezclar las piezas al azar
-    for (let i = 0; i < 500; i++) { // Realizar 500 movimientos para mezclar
-        var piezasAdyacentes = obtenerPiezasAdyacentes(piezaVacia, piezas);
-        if (piezasAdyacentes.length > 0) {
-            var piezaAleatoria = piezasAdyacentes[Math.floor(Math.random() * piezasAdyacentes.length)];
-            swapElements(piezaAleatoria, piezaVacia);
-            piezaVacia = piezaAleatoria;
+        // Mientras haya elementos para barajar
+        while (0 !== currentIndex) {
+            // Escoger un elemento restante
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+
+            // Intercambiar con el elemento actual
+            tempValue = piezasIds[currentIndex];
+            piezasIds[currentIndex] = piezasIds[randomIndex];
+            piezasIds[randomIndex] = tempValue;
         }
+
+        // Asignar los ids mezclados a las piezas
+        piezas.forEach(function(pieza, index) {
+            pieza.id = piezasIds[index];
+        });
     }
 
-    // Restablecer el contador de movimientos, el temporizador y mostrar el nombre del jugador si es su primer movimiento
-    movimientos = 0;
-    contadorMovimientos.textContent = movimientos;
+    // Función para verificar la resolución
+    function esResoluble(piezasIds) {
+        let inversiones = 0;
+        for (let i = 0; i < piezasIds.length; i++) {
+            for (let j = i + 1; j < piezasIds.length; j++) {
+                if (piezasIds[i] > piezasIds[j] && piezasIds[j] !== 'pieza-vacia') {
+                    inversiones++;
+                }
+            }
+        }
+        return inversiones % 2 === 0;
+    }
+
+    // Barajar las piezas
+    barajarPiezas(piezasIds);
+
+    // Si la configuración inicial no es resoluble, barajar nuevamente hasta obtener una configuración resoluble
+    while (!esResoluble(piezasIds)) {
+        barajarPiezas(piezasIds);
+    }
+
     segundos = 0;
     minutos = 0;
     contadorSegundos.textContent = '00';
     contadorMinutos.textContent = '00';
     iniciarTemporizador();
+    // Desactivar el botón después de hacer clic
+    this.disabled = true; // Esto desactivará el botón
 
-    piezas.forEach(function(pieza) {
-        pieza.addEventListener('click', function() {
-            if (movimientos === 0) {
-                showPlayer();
-            }
-
-            var esAdyacente = esPiezaAdyacente(pieza, piezaVacia);
-
-            if (esAdyacente) {
-                swapElements(pieza, piezaVacia);
-                movimientos++;
-                contadorMovimientos.textContent = movimientos;
-
-                if (isPuzzleComplete()) {
-                    detenerTemporizador();
-                    mostrarMensaje();
-                    let nombreJugador = document.getElementById('nombreJugador').value;
-                    registrarResultadoEnLeaderboard(nombreJugador, minutos * 60 + segundos, movimientos);
-                    mostrarLeaderboard();
-                }
-            }
-        });
-    });
+    // Verificar si el puzzle está completo después de mover una pieza
+    var intervaloJuego = setInterval(() => {
+        if (isPuzzleComplete()) {
+            clearInterval(intervaloJuego);
+            detenerTemporizador();
+            console.log('Puzzle completado. Fin del juego');
+            mostrarMensaje();
+            showPlayer();
+            alert('¡Has terminado el puzzle con éxito en ' + movimientos + ' movimientos!');
+            registrarResultadoEnLeaderboard(nombreJugador, minutos * 60 + segundos, movimientos);
+            mostrarLeaderboard(); // Mostrar el leaderboard después de registrar el resultado
+            this.disabled = false; // Habilitar el botón 'inicio'
+        }
+    }, 1000);
+    
 });
 
-function obtenerPiezasAdyacentes(piezaVacia, piezas) {
-    return piezas.filter(pieza => esPiezaAdyacente(pieza, piezaVacia));
-}
 
-function esPiezaAdyacente(pieza, piezaVacia) {
-    return (
-        (pieza.cellIndex === piezaVacia.cellIndex && Math.abs(pieza.parentNode.rowIndex - piezaVacia.parentNode.rowIndex) === 1) ||
-        (pieza.parentNode.rowIndex === piezaVacia.parentNode.rowIndex && Math.abs(pieza.cellIndex - piezaVacia.cellIndex) === 1)
-    );
-}
+
 
 
 
