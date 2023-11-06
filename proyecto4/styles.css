@@ -42,28 +42,28 @@ td {
 }
 
 #pieza-1 {
-    background-image: url(/DEW/proyecto4/imagenes/pieza-separada1/pieza1.png);
+    background-image: url(./imagenes/pieza-separada1/pieza1.png);
 }
 #pieza-2 {
-    background-image: url(/DEW/proyecto4/imagenes/pieza-separada1/pieza2.png);
+    background-image: url(./imagenes/pieza-separada1/pieza2.png);
 }
 #pieza-3 {
-    background-image: url(/DEW/proyecto4/imagenes/pieza-separada1/pieza3.png);
+    background-image: url(./imagenes/pieza-separada1/pieza3.png);
 }
 #pieza-4 {
-    background-image: url(/DEW/proyecto4/imagenes/pieza-separada1/pieza4.png);
+    background-image: url(./imagenes/pieza-separada1/pieza4.png);
 }
 #pieza-5 {
-    background-image: url(/DEW/proyecto4/imagenes/pieza-separada1/pieza5.png);
+    background-image: url(./imagenes/pieza-separada1/pieza5.png);
 }
 #pieza-6 {
-    background-image: url(/DEW/proyecto4/imagenes/pieza-separada1/pieza6.png);
+    background-image: url(./imagenes/pieza-separada1/pieza6.png);
 }
 #pieza-7 {
-    background-image: url(/DEW/proyecto4/imagenes/pieza-separada1/pieza7.png);
+    background-image: url(./imagenes/pieza-separada1/pieza7.png);
 }
 #pieza-8 {
-    background-image: url(/DEW/proyecto4/imagenes/pieza-separada1/pieza8.png);
+    background-image: url(./imagenes/pieza-separada1/pieza8.png);
 }
 
 
@@ -89,6 +89,7 @@ td {
     color: #fff; 
     text-shadow: 0 1px 0 #ddd, 0 2px 0 #ccc, 0 3px 0 #bbb, 0 4px 0 #aaa, 0 5px 0 #acacac, 0 6px 1px rgba(0,0,0,0.1), 0 0 5px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.3), 0 3px 5px rgba(0,0,0,0.2), 0 5px 10px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.2), 0 20px 20px rgba(0,0,0,0.15);
 }
+
 
 
 #mensaje{

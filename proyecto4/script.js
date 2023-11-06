@@ -1,40 +1,3 @@
-/*
-    Creador: Bladimir Peralta Herrera
-    Nombre del proyecto: Slide puzzle
-    Fase: Alfa
-    version: 1.9.0
-    Estado: incompleto
-*/
-
-
-/* // Funcionalidad de las piezas
-document.querySelector('.inicio').addEventListener('click', function() {
-    var piezas = Array.from(document.querySelectorAll('.pieza:not(#pieza-vacia)'));
-    var ids = piezas.map(function(pieza) {
-        return pieza.id;
-    });
-
-    // Mezclar los ids
-    for (let i = ids.length - 1; i > 0; i--) {
-        let j = Math.floor(Math.random() * (i + 1));
-        [ids[i], ids[j]] = [ids[j], ids[i]];
-    }
-
-    // Asignar los ids mezclados a las piezas
-    piezas.forEach(function(pieza, index) {
-        pieza.id = ids[index];
-    });
-
-    segundos = 0;
-    minutos = 0;
-    contadorSegundos.textContent = '00';
-    contadorMinutos.textContent = '00';
-    iniciarTemporizador();
-    // desactivar el boton despues de hacer clic
-    this.disabled = true; // Esto desactivará el botón
- 
-}); */
-
 
 let leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || [];
 
@@ -64,7 +27,9 @@ function registrarResultadoEnLeaderboard(nombre, tiempo, movimientos){
     leaderboard.push({nombre, tiempo, movimientos});
     localStorage.setItem('leaderboard', JSON.stringify(leaderboard));
     mostrarLeaderboard();
-    localStorage.clear();
+
+    // Para limpiar la leaderBoard
+    //localStorage.clear();
 }
 
 // Variable para contar los movimientos
@@ -73,20 +38,6 @@ var movimientos = 0;
 // Elemento para mostrar los movimientos
 var contadorMovimientos = document.querySelector('#movimientos');
 
-// Función para comprobar si el puzzle está completo
-/* function isPuzzleComplete() {
-    var piezas = Array.from(document.querySelectorAll('.pieza:not(#pieza-vacia)'));
-    for (var i = 0; i < piezas.length; i++) {
-
-        if (piezas[i].id !== 'pieza-' + (i + 1)){
-            console.log('todavia falta');
-            return false;
-        }
-    }
-
-    console.log('Puzzle completado');
-    return true;
-} */
 
 function isPuzzleComplete() {
     var piezas = Array.from(document.querySelectorAll('.pieza:not(#pieza-vacia)'));
@@ -101,7 +52,6 @@ function isPuzzleComplete() {
 
         if (pieza.id !== expectedId) {
             puzzleSolved = false;
-            // break;
         }
     }
 
@@ -126,21 +76,27 @@ function swapElements(obj1, obj2) {
 }
 
 
+// Obtener todas las piezas y verificar que existan
 var piezas = Array.from(document.querySelectorAll('.pieza'));
 if (piezas.length > 0) {
+    // Asignar un controlador de eventos 'click' a cada pieza
     piezas.forEach(function(pieza) {
         pieza.addEventListener('click', function() {
+            // Buscar la pieza vacía en el tablero
             var piezaVacia = document.querySelector('#pieza-vacia');
             if (!piezaVacia) {
+                // Imprimir un mensaje de error si no se encuentra la pieza vacía
                 console.error("Error: No se encontró la pieza vacía.");
-                return;
+                return; // Salir de la función
             }
 
+            // Comprobar si la pieza clicada es adyacente a la pieza vacía
             var esAdyacente =
                 (pieza.cellIndex === piezaVacia.cellIndex && Math.abs(pieza.parentNode.rowIndex - piezaVacia.parentNode.rowIndex) === 1) ||
                 (pieza.parentNode.rowIndex === piezaVacia.parentNode.rowIndex && Math.abs(pieza.cellIndex - piezaVacia.cellIndex) === 1);
 
             if (esAdyacente) {
+                // Mover la pieza si es adyacente a la pieza vacía
                 console.log('Moviendo la pieza: ', pieza.id); // Agregar esta línea
                 swapElements(pieza, piezaVacia);
                 movimientos++; // Incrementar el contador de movimientos
@@ -151,8 +107,10 @@ if (piezas.length > 0) {
         });
     });
 } else {
+    // Imprimir un mensaje de error si no se encuentran piezas para configurar los controladores de eventos
     console.error("Error: No se encontraron piezas para configurar los controladores de eventos.");
 }
+
 
 // Variables para el temporizador
 var segundos = 0;
@@ -221,7 +179,7 @@ document.getElementById('botonGuardar').addEventListener('click', function(){
 });
 
 
-
+// Prubas con solo mover 3 piezas
 /* document.querySelector('.inicio').addEventListener('click', function() {
     // Obtener las piezas 5, 6 y 8
     var pieza5 = document.getElementById('pieza-5');
@@ -248,7 +206,21 @@ document.getElementById('botonGuardar').addEventListener('click', function(){
 
 }); */
 
-document.querySelector('.inicio').addEventListener('click', function() {
+
+const botonInicio = document.querySelector('.inicio');
+botonInicio.addEventListener('click', function() {
+
+    segundos = 0;
+    minutos = 0;
+    movimientos = 0;
+    contadorSegundos.textContent = '00';
+    contadorMinutos.textContent = '00';
+    contadorMovimientos.textContent = '0';
+
+    // Ocultar mensaje
+    elementoMensaje.style.display = 'none';
+    botonInicio.style.display = 'none';
+
     var piezas = Array.from(document.querySelectorAll('.pieza:not(#pieza-vacia)'));
     var piezasIds = piezas.map(function(pieza) {
         return pieza.id;
@@ -302,8 +274,6 @@ document.querySelector('.inicio').addEventListener('click', function() {
     contadorSegundos.textContent = '00';
     contadorMinutos.textContent = '00';
     iniciarTemporizador();
-    // Desactivar el botón después de hacer clic
-    this.disabled = true; // Esto desactivará el botón
 
     // Verificar si el puzzle está completo después de mover una pieza
     var intervaloJuego = setInterval(() => {
@@ -316,7 +286,7 @@ document.querySelector('.inicio').addEventListener('click', function() {
             alert('¡Has terminado el puzzle con éxito en ' + movimientos + ' movimientos!');
             registrarResultadoEnLeaderboard(nombreJugador, minutos * 60 + segundos, movimientos);
             mostrarLeaderboard(); // Mostrar el leaderboard después de registrar el resultado
-            this.disabled = false; // Habilitar el botón 'inicio'
+            botonInicio.style.display = 'block';
         }
     }, 1000);
     
