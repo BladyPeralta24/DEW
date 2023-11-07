@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manejo de carpetas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="wrapper">
+        <div id="page-banner">
+            <h1 class="title">CLIENT SIDE WEB DEVELOPMENT</h1>
+            <p>Javascript Exercises </p>
+            <form id="search-ex">
+                <input type="text" placeholder="Search exercise..." />
+            </form>
+        </div>
+
+        <div id="ex-list">
+            <h2 class="title">Finished exercises</h2>
+            <ul>
+                <li>
+                    <span class="name">Root /</span>
+                    <span class="delete">-</span>
+                    <span class="add">+</span>
+                </li>
+            </ul>
+        </div>
+        <form id="add-ex">
+             <label>Hide all exercises</label><input type="checkbox" id="hide" />
+        
+             <input type="text" placeholder="Add an exercise..." />
+             <button>Add</button>
+         </form>
+
+         <script src="script.js"></script>
+
+    </div>
+</body>
+</html>
