@@ -13,7 +13,7 @@ list.addEventListener('click', function(e) {
   }
 });
 
-//Hide exercises
+/* //Hide exercises
 const hideBox = document.querySelector('#hide');
 hideBox.addEventListener('change', function(){
   if(hideBox.checked){
@@ -21,10 +21,39 @@ hideBox.addEventListener('change', function(){
   } else {
     list.style.display = "initial";
   }
+}); */
+
+// add exercises
+list.addEventListener('click', function(e) {
+  if(e.target.className == 'add'){
+      // create elements
+    const value = addForm.querySelector('input[type="text"]').value;
+    const li = document.createElement('li');
+    const ExName = document.createElement('span');
+    const deleteBtn = document.createElement('span');
+    const addBtn = document.createElement('span');
+
+    // add text content
+    ExName.textContent = value;
+    deleteBtn.textContent = '-';
+    addBtn.textContent = '+';
+    
+      // add classes
+    ExName.classList.add('name');
+    deleteBtn.classList.add('delete');
+    addBtn.classList.add('add');
+
+
+    // append to DOM
+    li.appendChild(ExName);
+    li.appendChild(deleteBtn);
+    li.appendChild(addBtn);
+    list.appendChild(li);
+  }
 });
 
 
-// add exercises
+/* // add exercises
 
 addForm.querySelector("button").addEventListener('click', function(e){
  e.preventDefault();//https://www.w3schools.com/tags/att_button_type.asp
@@ -52,7 +81,7 @@ addForm.querySelector("button").addEventListener('click', function(e){
   li.appendChild(deleteBtn);
   li.appendChild(addBtn);
   list.appendChild(li);
-  });
+}); */
 
 // filter exercises
 const searchBar = document.forms['search-ex'].querySelector('input');

@@ -64,21 +64,20 @@ h1, h2{
 }
 
 .delete{
-    /*float: right;*/
     margin: auto;
+    margin-left: 10px;
     height: auto;
     background: #9361bf;
-    padding: 6px;
+    padding: 5px;
     border-radius: 4px;
     cursor: pointer;
     color: white;
 }
 .add{
-    /*float: right;*/
-    margin: auto;
+    margin-left: 10px;
     height: auto;
     background: #9361bf;
-    padding: 6px;
+    padding: 5px;
     border-radius: 4px;
     cursor: pointer;
     color: white;
