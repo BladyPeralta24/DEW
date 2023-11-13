@@ -30,21 +30,26 @@ list.addEventListener('click', function(e) {
     const value = addForm.querySelector('input[type="text"]').value;
     const li = document.createElement('li');
     const ExName = document.createElement('span');
+    const imgName = document.createElement('img');
     const deleteBtn = document.createElement('span');
     const addBtn = document.createElement('span');
 
     // add text content
     ExName.textContent = value;
+    imgName.textContent = value;
+    imgName.src='./imagenes/carpeta.png';
     deleteBtn.textContent = '-';
     addBtn.textContent = '+';
     
       // add classes
     ExName.classList.add('name');
+    imgName.classList.add('carpeta');
     deleteBtn.classList.add('delete');
     addBtn.classList.add('add');
 
 
     // append to DOM
+    li.appendChild(imgName);
     li.appendChild(ExName);
     li.appendChild(deleteBtn);
     li.appendChild(addBtn);
