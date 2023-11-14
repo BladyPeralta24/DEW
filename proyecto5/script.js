@@ -28,6 +28,7 @@ list.addEventListener('click', function(e) {
   if(e.target.className == 'add'){
       // create elements
     const value = addForm.querySelector('input[type="text"]').value;
+    const ul = document.createElement('ul');
     const li = document.createElement('li');
     const ExName = document.createElement('span');
     const imgName = document.createElement('img');
@@ -49,11 +50,13 @@ list.addEventListener('click', function(e) {
 
 
     // append to DOM
+    li.appendChild(ul);
     li.appendChild(imgName);
     li.appendChild(ExName);
     li.appendChild(deleteBtn);
     li.appendChild(addBtn);
     list.appendChild(li);
+    li.appendChild(ul);
   }
 });
 
