@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manejo de carpetas</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
     <div id="wrapper">
@@ -20,17 +20,16 @@
             <h2 class="title">Resultado esperado</h2>
             
             <ul>
-            <span class="name"><img src="./imagenes/carpeta.png" alt="" class="carpeta">Raiz /</span>
-            <span class="add">+</span>
-                <li><img src="./imagenes/documentos.png" alt="" class="documento">archivo_1.extension <span class="delete">-</span></li>
-                <li><img src="./imagenes/documentos.png" alt="" class="documento">archivo_2.extension <span class="delete">-</span></li>
+                <li data-level="0">
+                    <span class="name"><img src="./imagenes/carpeta.png" alt="" class="carpeta">Raiz /</span>
+                    <span class="add">+</span>
+                    <input type="checkbox" id="rootCheckbox" checked onclick="toggleFolderContent(this, rootFolder)">
+                    <ul></ul>
+                </li>
             </ul>
         </div>
         <form id="add-ex">
-             <!-- <label>Hide all exercises</label><input type="checkbox" id="hide" /> -->
-        
              <input type="text" placeholder="Añadir carpeta o fichero" />
-             <!-- <button>Add</button> -->
          </form>
 
          <script src="script.js"></script>
