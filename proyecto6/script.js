@@ -102,44 +102,78 @@ function generateKeyboard(){
     });
 }
 
+
 //Funcion para manejar la pulsación de teclas (tanto clics como teclas reales)
 function handleKeyPress(keyValue){
     console.log(`Tecla ${keyValue} presionada`);
 
     //Manejo de los casos especiales
     const screen = document.getElementById('screen');
+
+    // Variable para guardar los valores introducidos del teclado, inicializando a vacio
+    let chars = [];
     
     switch(keyValue){
         case 'SPACE':
             screen.textContent += ' ';
             break;
-        case 'DELETE':
+        case 'Delete':
             // Logica para borrar
+            chars = screen.textContent.split('');
+            chars.pop();
+            screen.textContent = chars.join('');
             break;
+        case 'Enter':
+            screen.textContent += '\n';
+            break;
+        case 'SHIFT':
+            const allKeys = document.querySelectorAll('.key');
+            allKeys.forEach(keyElement => {
+                keyElement.classList.toggle('lower');
+            });
         default:
             screen.textContent += keyValue;
+            chars = screen.textContent.split('');
+            console.log(chars);
     }
 }
 
-// Evento para capturar las teclas reales del teclado
-document.addEventListener('keydown', function(e){
-    // Verificar si la tecla presionada tiene un valor en el arreglo de teclas
-    const pressedKey = keyboardRows
-    .flat() // aplanar el arreglo de teclas
-    .find(key => key.value.toLowerCase() === e.key.toLowerCase());
 
-    if (pressedKey){
+
+// Evento para capturar las teclas reales del teclado
+document.addEventListener('keydown', function (e) {
+    // Aplanar el arreglo de teclas
+    const flattenedKeys = keyboardRows.flat();
+
+    // Encontrar la tecla presionada (ignorando mayúsculas/minúsculas)
+    const pressedKey = flattenedKeys.find(key => {
+        // Verificar si la tecla presionada coincide con el valor o el código de la tecla
+        return (
+            key.value.toLowerCase() === e.key.toLowerCase() ||
+            key.code === e.code ||
+            (key.type === 'especial' && key.value === 'SPACE' && e.code === 'Space') ||
+            (key.type === 'especial' && key.value === 'Delete' && e.code === 'Backspace') ||
+            (key.type === 'especial' && key.value === 'SHIFT' && e.code === 'Shift') ||
+            (key.type === 'especial' && key.value === 'Enter' && e.code === 'Enter')
+            // Agregar otras teclas especiales según sea necesario
+        );
+    });
+
+    // Si se encontró la tecla, manejar la pulsación y evitar la propagación del evento
+    if (pressedKey) {
         handleKeyPress(pressedKey.value);
-        e.preventDefault(); // Evitar que el evento se propague (por ejemplo, evitar el desplazamiento de la pagina en caso de teclas de flechas)
+        e.preventDefault(); // Evitar que el evento se propague
     }
 });
 
 
-// FUncion para añadir una clase a cada tecla del teclado
+
+
+// Funcion para añadir una clase a cada tecla del teclado
 function addKeyToKeyboardRows(rows){
-    for (let i = 0; i < rows.lenght; i++){
+    for (let i = 0; i < rows.length; i++){
         const row = rows[i];
-        for (let j = 0; j < row.lenght; j++){
+        for (let j = 0; j < row.length; j++){
             const key = row[j];
             key.classes = key.classes ? key.classes + ' key': 'key';
         }
