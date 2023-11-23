@@ -18,32 +18,33 @@ const keyboardRows =[
         {value: 'Delete', type: 'especial', width: '100px'}
     ],
     [
-        {value: 'Tab', type: 'special', width: '100px'},
-        {value: 'Q', type: 'letter'},
-        {value: 'W', type: 'letter'},
-        {value: 'E', type: 'letter'},
-        {value: 'R', type: 'letter'},
-        {value: 'T', type: 'letter'},
-        {value: 'Y', type: 'letter'},
-        {value: 'U', type: 'letter'},
-        {value: 'I', type: 'letter'},
-        {value: 'O', type: 'letter'},
-        {value: '`', type: 'especial'},
+        {value: 'Tab', type: 'special', width: '70px'},
+        {value: 'q', type: 'letter'},
+        {value: 'w', type: 'letter'},
+        {value: 'e', type: 'letter'},
+        {value: 'r', type: 'letter'},
+        {value: 't', type: 'letter'},
+        {value: 'y', type: 'letter'},
+        {value: 'u', type: 'letter'},
+        {value: 'i', type: 'letter'},
+        {value: 'o', type: 'letter'},
+        {value: 'p', type: 'letter'},
+        {value: '^', type: 'especial'},
         {value: '+', type: 'especial'},
         {value: 'Enter', type: 'especial', width: '100px'}
     ],
     [
         {value: 'Bloq Mayus', type: 'especial', width: '100px'},
-        {value: 'A', type: 'letter'},
-        {value: 'S', type: 'letter'},
-        {value: 'D', type: 'letter'},
-        {value: 'F', type: 'letter'},
-        {value: 'G', type: 'letter'},
-        {value: 'H', type: 'letter'},
-        {value: 'J', type: 'letter'},
-        {value: 'K', type: 'letter'},
-        {value: 'L', type: 'letter'},
-        {value: 'Ñ', type: 'letter'},
+        {value: 'a', type: 'letter'},
+        {value: 's', type: 'letter'},
+        {value: 'd', type: 'letter'},
+        {value: 'f', type: 'letter'},
+        {value: 'g', type: 'letter'},
+        {value: 'h', type: 'letter'},
+        {value: 'j', type: 'letter'},
+        {value: 'k', type: 'letter'},
+        {value: 'l', type: 'letter'},
+        {value: 'ñ', type: 'letter'},
         {value: '{', type: 'especial'},
         {value: '}', type: 'especial'},
         {value: 'ç', type: 'especial'}
@@ -51,14 +52,14 @@ const keyboardRows =[
     ],
     [
         {value: 'SHIFT', type: 'especial', width: '110px'},
-        {value: '< >', type: 'especial'},
-        {value: 'Z', type: 'letter'},
-        {value: 'X', type: 'letter'},
-        {value: 'C', type: 'letter'},
-        {value: 'V', type: 'letter'},
-        {value: 'B', type: 'letter'},
-        {value: 'N', type: 'letter'},
-        {value: 'M', type: 'letter'},
+        {value: '<', type: 'especial'},
+        {value: 'z', type: 'letter'},
+        {value: 'x', type: 'letter'},
+        {value: 'c', type: 'letter'},
+        {value: 'v', type: 'letter'},
+        {value: 'b', type: 'letter'},
+        {value: 'n', type: 'letter'},
+        {value: 'm', type: 'letter'},
         {value: ',', type: 'especial'},
         {value: '.', type: 'especial'},
         {value: '-', type: 'especial'},
@@ -68,8 +69,9 @@ const keyboardRows =[
         {value: 'Ctrl', type: 'especial'},
         {value: 'WIN', type: 'especial'},
         {value: 'Alt', type: 'especial'},
-        {value: 'SPACE', type: 'especial', width: '600px'},
+        {value: 'SPACE', type: 'especial', width: '550px'},
         {value: 'Alr Gr', type: 'especial'},
+        {value: 'WIN', type: 'especial'},
         {value: 'Ctrl', type: 'especial'}
     ],
 ];
@@ -85,6 +87,22 @@ function generateKeyboard(){
         row.forEach(key => {
             const keyElement = document.createElement('div');
             keyElement.classList.add('key');
+
+            // Agregar clases según el tipo de tecla
+            switch (key.type){
+                case 'especial':
+                    keyElement.classList.add('keySpecial');
+                    break;
+                case 'letter':
+                    keyElement.classList.add('keyLetter');
+                    break;
+                case 'number':
+                    keyElement.classList.add('keyNumber');
+                    break;
+                default:
+                    break;
+            }
+
             keyElement.textContent = key.value;
 
             if (key.width){
@@ -127,12 +145,21 @@ function handleKeyPress(keyValue){
             screen.textContent += '\n';
             break;
         case 'SHIFT':
-            const allKeys = document.querySelectorAll('.key');
-            allKeys.forEach(keyElement => {
-                keyElement.classList.toggle('lower');
+            // cambiar solo las teclas de letras a mayusculas
+            const letterKey = document.querySelectorAll('.keyLetter');
+            letterKey.forEach(keyElement => {
+                const originalValue = keyElement.textContent;
+                const isUpperCase = keyElement.classList.toggle('upper');
+                const newCaseValue = isUpperCase ? originalValue.toUpperCase() : originalValue.toLowerCase();
+                keyElement.textContent = newCaseValue;
             });
+            break;
         default:
-            screen.textContent += keyValue;
+            // Reflejar el estado de Shift al agregar caracteres al screen
+            const isShiftActive = document.querySelector('.SHIFT').classList.contains('upper');
+            const keyType = document.querySelector(`.key${keyValue.charAt(0).toUpperCase()}${keyValue.slice(1)}`).classList.contains('upper') ? 'upper' : '';
+            screen.textContent += isShiftActive ? keyValue.toUpperCase() : (keyType === 'upper' ? keyValue.toLowerCase() : keyValue);
+            // screen.textContent += keyValue;
             chars = screen.textContent.split('');
             console.log(chars);
     }
