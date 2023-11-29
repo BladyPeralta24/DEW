@@ -34,7 +34,7 @@ const keyboardRows =[
         {value: 'Enter', type: 'especial', width: '100px'}
     ],
     [
-        {value: 'Bloq Mayus', type: 'especial', width: '100px'},
+        {value: 'CapsLock', type: 'especial', width: '100px'},
         {value: 'a', type: 'letter'},
         {value: 's', type: 'letter'},
         {value: 'd', type: 'letter'},
@@ -70,7 +70,7 @@ const keyboardRows =[
         {value: 'WIN', type: 'especial'},
         {value: 'Alt', type: 'especial'},
         {value: 'SPACE', type: 'especial', width: '550px'},
-        {value: 'Alr Gr', type: 'especial'},
+        {value: 'Alt Gr', type: 'especial'},
         {value: 'WIN', type: 'especial'},
         {value: 'Ctrl', type: 'especial'}
     ],
@@ -119,14 +119,19 @@ function generateKeyboard(){
         keyboardContainer.appendChild(rowElement);
     });
 }
-
+// Declarar variables para rastrear los estados de cada boton especial
+let isShiftPressed = false;
+let isCapsLockActive = false;
+let isAltPressed = false;
+let isCtrlPressed = false;
 
 //Funcion para manejar la pulsación de teclas (tanto clics como teclas reales)
 function handleKeyPress(keyValue){
+
     console.log(`Tecla ${keyValue} presionada`);
 
     //Manejo de los casos especiales
-    const screen = document.getElementById('screen');
+    const screen = document.getElementById("screen");
 
     // Variable para guardar los valores introducidos del teclado, inicializando a vacio
     let chars = [];
@@ -145,6 +150,9 @@ function handleKeyPress(keyValue){
             screen.textContent += '\n';
             break;
         case 'SHIFT':
+            //Cambiar el estado de la tecla Shift
+            isShiftPressed = !isShiftPressed;
+            
             // cambiar solo las teclas de letras a mayusculas
             const letterKey = document.querySelectorAll('.keyLetter');
             letterKey.forEach(keyElement => {
@@ -154,12 +162,65 @@ function handleKeyPress(keyValue){
                 keyElement.textContent = newCaseValue;
             });
             break;
+        case 'CapsLock':
+            // Cambiar el estado de CapsLock
+            isCapsLockActive = !isCapsLockActive;
+
+            // Cambiar todas las teclas de letras a mayuscula o minuscula
+            const allLetterKeys = document.querySelectorAll('.keyLetter');
+            allLetterKeys.forEach(keyElement => {
+                const originalValue = keyElement.textContent;
+                const newCaseValue = isCapsLockActive ? originalValue.toUpperCase() : originalValue.toLowerCase();
+                keyElement.textContent = newCaseValue;
+            });
+            break;
+        case 'Alt':
+            // Cambiar el estado de la tecla Alt
+            isAltPressed = true;
+            break;
+        case 'Alt Gr':
+            isAltPressed = true;
+            // Lógica para la tecla AltGraph
+            document.querySelectorAll('.keyNumber').forEach(keyElement => {
+                const num = keyElement.textContent;
+                switch (num){
+                    case '1':
+                    keyElement.textContent = '|';
+                    break;
+                    case '2':
+                        keyElement.textContent = '@';
+                        break;
+                    case '3':
+                        keyElement.textContent = '#';
+                        break;
+                    case '4':
+                        keyElement.textContent = '~';
+                        break;
+                    case '5':
+                        keyElement.textContent = '€';
+                        break;
+                    default:
+                        // Cambiar la tecla 'e' al símbolo '€'
+                        document.querySelectorAll('.keyLetter').forEach(keyElement => {
+                            if (keyElement.textContent == 'e' || keyElement.textContent == 'E'){
+                                keyElement.textContent = '€';
+                                screen.textContent = screen.textContent + '€';
+                            }
+                        });
+                }
+                
+            });
+            break;
+        case 'Ctrl':
+            // Cambiar el estado de la tecla Ctrl
+            isCtrlPressed = true;
+            break;
+        case 'Tab':
+            // Cambiar el estado de la tecla Tab
+            screen.textContent += '    ';
+            break;
         default:
-            // Reflejar el estado de Shift al agregar caracteres al screen
-            const isShiftActive = document.querySelector('.SHIFT').classList.contains('upper');
-            const keyType = document.querySelector(`.key${keyValue.charAt(0).toUpperCase()}${keyValue.slice(1)}`).classList.contains('upper') ? 'upper' : '';
-            screen.textContent += isShiftActive ? keyValue.toUpperCase() : (keyType === 'upper' ? keyValue.toLowerCase() : keyValue);
-            // screen.textContent += keyValue;
+            screen.textContent += isShiftPressed ? (isCapsLockActive ? keyValue.toLowerCase() : keyValue.toUpperCase()) : (isCapsLockActive ? keyValue.toUpperCase() : keyValue.toLowerCase());
             chars = screen.textContent.split('');
             console.log(chars);
     }
@@ -179,10 +240,14 @@ document.addEventListener('keydown', function (e) {
             key.value.toLowerCase() === e.key.toLowerCase() ||
             key.code === e.code ||
             (key.type === 'especial' && key.value === 'SPACE' && e.code === 'Space') ||
+            (key.type === 'especial' && key.value === 'Tab' && e.code === 'TAB') ||
             (key.type === 'especial' && key.value === 'Delete' && e.code === 'Backspace') ||
-            (key.type === 'especial' && key.value === 'SHIFT' && e.code === 'Shift') ||
-            (key.type === 'especial' && key.value === 'Enter' && e.code === 'Enter')
-            // Agregar otras teclas especiales según sea necesario
+            (key.type === 'especial' && key.value === 'SHIFT' && e.code === 'ShiftLeft') ||
+            (key.type === 'especial' && key.value === 'SHIFT' && e.code === 'ShiftRight') ||
+            (key.type === 'especial' && key.value === 'CapsLock' && e.code === 'CapsLock') ||
+            (key.type === 'especial' && key.value === 'Alt Gr' && e.code === 'AltRight') ||
+            (key.type === 'especial' && key.value === 'Alt' && e.code === 'AltLeft') ||
+            (key.type === 'especial' && key.value === 'Enter' && e.code === 'Enter') || e.code === 'NumpadEnter'
         );
     });
 
@@ -190,6 +255,21 @@ document.addEventListener('keydown', function (e) {
     if (pressedKey) {
         handleKeyPress(pressedKey.value);
         e.preventDefault(); // Evitar que el evento se propague
+    }
+});
+
+// Evento para capturar la liberación de teclas especiales
+document.addEventListener('keyup', function (e){
+    switch (e.code){
+        case 'Alt':
+            isAltPressed = false;
+            break;
+        case 'Ctrl':
+            isCtrlPressed = false;
+            break;
+        case 'SHIFT':
+            isShiftPressed = false;
+            break;
     }
 });
 
