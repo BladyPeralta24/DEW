@@ -1,83 +1,83 @@
-// Definir objetos para representar las trclas
-const keyboardRows =[
+// Define objects to represent the keys
+const keyboardRows = [
 
     [
-        {value: 'Esc', type: 'especial'},
-        {value: '1', type: 'number'},
-        {value: '2', type: 'number'},
-        {value: '3', type: 'number'},
-        {value: '4', type: 'number'},
-        {value: '5', type: 'number'},
-        {value: '6', type: 'number'},
-        {value: '7', type: 'number'},
-        {value: '8', type: 'number'},
-        {value: '9', type: 'number'},
-        {value: '0', type: 'number'},
-        {value: '?', type: 'especial'},
-        {value: '¿', type: 'especial'},
-        {value: 'Delete', type: 'especial', width: '100px'}
+        { value: 'Esc', type: 'special' },
+        { value: '1', type: 'number' },
+        { value: '2', type: 'number' },
+        { value: '3', type: 'number' },
+        { value: '4', type: 'number' },
+        { value: '5', type: 'number' },
+        { value: '6', type: 'number' },
+        { value: '7', type: 'number' },
+        { value: '8', type: 'number' },
+        { value: '9', type: 'number' },
+        { value: '0', type: 'number' },
+        { value: '?', type: 'special' },
+        { value: '¿', type: 'special' },
+        { value: 'Delete', type: 'special', width: '100px' }
     ],
     [
-        {value: 'Tab', type: 'special', width: '70px'},
-        {value: 'q', type: 'letter'},
-        {value: 'w', type: 'letter'},
-        {value: 'e', type: 'letter'},
-        {value: 'r', type: 'letter'},
-        {value: 't', type: 'letter'},
-        {value: 'y', type: 'letter'},
-        {value: 'u', type: 'letter'},
-        {value: 'i', type: 'letter'},
-        {value: 'o', type: 'letter'},
-        {value: 'p', type: 'letter'},
-        {value: '^', type: 'especial'},
-        {value: '+', type: 'especial'},
-        {value: 'Enter', type: 'especial', width: '100px'}
+        { value: 'Tab', type: 'special', width: '70px' },
+        { value: 'q', type: 'letter' },
+        { value: 'w', type: 'letter' },
+        { value: 'e', type: 'letter' },
+        { value: 'r', type: 'letter' },
+        { value: 't', type: 'letter' },
+        { value: 'y', type: 'letter' },
+        { value: 'u', type: 'letter' },
+        { value: 'i', type: 'letter' },
+        { value: 'o', type: 'letter' },
+        { value: 'p', type: 'letter' },
+        { value: '^', type: 'special' },
+        { value: '+', type: 'special' },
+        { value: 'Enter', type: 'special', width: '100px' }
     ],
     [
-        {value: 'CapsLock', type: 'especial', width: '100px'},
-        {value: 'a', type: 'letter'},
-        {value: 's', type: 'letter'},
-        {value: 'd', type: 'letter'},
-        {value: 'f', type: 'letter'},
-        {value: 'g', type: 'letter'},
-        {value: 'h', type: 'letter'},
-        {value: 'j', type: 'letter'},
-        {value: 'k', type: 'letter'},
-        {value: 'l', type: 'letter'},
-        {value: 'ñ', type: 'letter'},
-        {value: '{', type: 'especial'},
-        {value: '}', type: 'especial'},
-        {value: 'ç', type: 'especial'}
-        
+        { value: 'CapsLock', type: 'special', width: '100px' },
+        { value: 'a', type: 'letter' },
+        { value: 's', type: 'letter' },
+        { value: 'd', type: 'letter' },
+        { value: 'f', type: 'letter' },
+        { value: 'g', type: 'letter' },
+        { value: 'h', type: 'letter' },
+        { value: 'j', type: 'letter' },
+        { value: 'k', type: 'letter' },
+        { value: 'l', type: 'letter' },
+        { value: 'ñ', type: 'letter' },
+        { value: '{', type: 'special' },
+        { value: '}', type: 'special' },
+        { value: 'ç', type: 'special' }
+
     ],
     [
-        {value: 'SHIFT', type: 'especial', width: '110px'},
-        {value: '<', type: 'especial'},
-        {value: 'z', type: 'letter'},
-        {value: 'x', type: 'letter'},
-        {value: 'c', type: 'letter'},
-        {value: 'v', type: 'letter'},
-        {value: 'b', type: 'letter'},
-        {value: 'n', type: 'letter'},
-        {value: 'm', type: 'letter'},
-        {value: ',', type: 'especial'},
-        {value: '.', type: 'especial'},
-        {value: '-', type: 'especial'},
-        {value: 'SHIFT', type: 'especial', width: '110px'}
+        { value: 'SHIFT', type: 'special', width: '110px' },
+        { value: '<', type: 'special' },
+        { value: 'z', type: 'letter' },
+        { value: 'x', type: 'letter' },
+        { value: 'c', type: 'letter' },
+        { value: 'v', type: 'letter' },
+        { value: 'b', type: 'letter' },
+        { value: 'n', type: 'letter' },
+        { value: 'm', type: 'letter' },
+        { value: ',', type: 'special' },
+        { value: '.', type: 'special' },
+        { value: '-', type: 'special' },
+        { value: 'SHIFT', type: 'special', width: '110px' }
     ],
     [
-        {value: 'Ctrl', type: 'especial'},
-        {value: 'WIN', type: 'especial'},
-        {value: 'Alt', type: 'especial'},
-        {value: 'SPACE', type: 'especial', width: '550px'},
-        {value: 'Alt Gr', type: 'especial'},
-        {value: 'WIN', type: 'especial'},
-        {value: 'Ctrl', type: 'especial'}
+        { value: 'Ctrl', type: 'special' },
+        { value: 'WIN', type: 'special' },
+        { value: 'Alt', type: 'special' },
+        { value: 'SPACE', type: 'special', width: '550px' },
+        { value: 'Alt Gr', type: 'special' },
+        { value: 'WIN', type: 'special' },
+        { value: 'Ctrl', type: 'special' }
     ],
 ];
 
-// Funcion para generar las teclas en el DOM
-function generateKeyboard(){
+// Function to generate keys in the DOM
+function generateKeyboard() {
     const keyboardContainer = document.getElementById('keyboard');
 
     keyboardRows.forEach(row => {
@@ -88,9 +88,9 @@ function generateKeyboard(){
             const keyElement = document.createElement('div');
             keyElement.classList.add('key');
 
-            // Agregar clases según el tipo de tecla
-            switch (key.type){
-                case 'especial':
+            // Add classes based on key type
+            switch (key.type) {
+                case 'special':
                     keyElement.classList.add('keySpecial');
                     break;
                 case 'letter':
@@ -105,11 +105,11 @@ function generateKeyboard(){
 
             keyElement.textContent = key.value;
 
-            if (key.width){
+            if (key.width) {
                 keyElement.style.width = key.width;
             }
 
-            keyElement.addEventListener('click', function(){
+            keyElement.addEventListener('click', function () {
                 handleKeyPress(key.value);
             });
 
@@ -119,29 +119,30 @@ function generateKeyboard(){
         keyboardContainer.appendChild(rowElement);
     });
 }
-// Declarar variables para rastrear los estados de cada boton especial
+
+// Declare variables to track the states of each special button
 let isShiftPressed = false;
 let isCapsLockActive = false;
 let isAltPressed = false;
 let isCtrlPressed = false;
 
-//Funcion para manejar la pulsación de teclas (tanto clics como teclas reales)
-function handleKeyPress(keyValue){
+// Function to handle key presses (both clicks and actual key presses)
+function handleKeyPress(keyValue) {
 
-    console.log(`Tecla ${keyValue} presionada`);
+    console.log(`Key ${keyValue} pressed`);
 
-    //Manejo de los casos especiales
+    // Handle special cases
     const screen = document.getElementById("screen");
 
-    // Variable para guardar los valores introducidos del teclado, inicializando a vacio
+    // Variable to store inputted keyboard values, initializing to empty
     let chars = [];
-    
-    switch(keyValue){
+
+    switch (keyValue) {
         case 'SPACE':
             screen.textContent += ' ';
             break;
         case 'Delete':
-            // Logica para borrar
+            // Logic for deletion
             chars = screen.textContent.split('');
             chars.pop();
             screen.textContent = chars.join('');
@@ -150,23 +151,27 @@ function handleKeyPress(keyValue){
             screen.textContent += '\n';
             break;
         case 'SHIFT':
-            //Cambiar el estado de la tecla Shift
+            // Change the state of the Shift key
             isShiftPressed = !isShiftPressed;
-            
-            // cambiar solo las teclas de letras a mayusculas
+
+            // Change only letter keys to uppercase
             const letterKey = document.querySelectorAll('.keyLetter');
             letterKey.forEach(keyElement => {
                 const originalValue = keyElement.textContent;
                 const isUpperCase = keyElement.classList.toggle('upper');
                 const newCaseValue = isUpperCase ? originalValue.toUpperCase() : originalValue.toLowerCase();
+
                 keyElement.textContent = newCaseValue;
             });
+
+            // Change the result of the < key to >
+            // Result: Not addressed
             break;
         case 'CapsLock':
-            // Cambiar el estado de CapsLock
+            // Change the state of CapsLock
             isCapsLockActive = !isCapsLockActive;
 
-            // Cambiar todas las teclas de letras a mayuscula o minuscula
+            // Change all letter keys to uppercase or lowercase
             const allLetterKeys = document.querySelectorAll('.keyLetter');
             allLetterKeys.forEach(keyElement => {
                 const originalValue = keyElement.textContent;
@@ -175,18 +180,19 @@ function handleKeyPress(keyValue){
             });
             break;
         case 'Alt':
-            // Cambiar el estado de la tecla Alt
+            // Change the state of the Alt key
             isAltPressed = true;
+            // Button not implemented
             break;
         case 'Alt Gr':
             isAltPressed = true;
-            // Lógica para la tecla AltGraph
+            // Logic for the AltGraph key
             document.querySelectorAll('.keyNumber').forEach(keyElement => {
                 const num = keyElement.textContent;
-                switch (num){
+                switch (num) {
                     case '1':
-                    keyElement.textContent = '|';
-                    break;
+                        keyElement.textContent = '|';
+                        break;
                     case '2':
                         keyElement.textContent = '@';
                         break;
@@ -200,23 +206,24 @@ function handleKeyPress(keyValue){
                         keyElement.textContent = '€';
                         break;
                     default:
-                        // Cambiar la tecla 'e' al símbolo '€'
+                        // Change the 'e' key to the '€' symbol
                         document.querySelectorAll('.keyLetter').forEach(keyElement => {
-                            if (keyElement.textContent == 'e' || keyElement.textContent == 'E'){
+                            if (keyElement.textContent == 'e' || keyElement.textContent == 'E') {
                                 keyElement.textContent = '€';
                                 screen.textContent = screen.textContent + '€';
                             }
                         });
                 }
-                
+
             });
+            // Result: Not favored; Does not work as expected
             break;
         case 'Ctrl':
-            // Cambiar el estado de la tecla Ctrl
+            // Change the state of the Ctrl key
             isCtrlPressed = true;
             break;
         case 'Tab':
-            // Cambiar el estado de la tecla Tab
+            // Change the state of the Tab key
             screen.textContent += '    ';
             break;
         default:
@@ -226,41 +233,39 @@ function handleKeyPress(keyValue){
     }
 }
 
-
-
-// Evento para capturar las teclas reales del teclado
+// Event to capture actual keyboard key presses
 document.addEventListener('keydown', function (e) {
-    // Aplanar el arreglo de teclas
+    // Flatten the array of keys
     const flattenedKeys = keyboardRows.flat();
 
-    // Encontrar la tecla presionada (ignorando mayúsculas/minúsculas)
+    // Find the pressed key (ignoring case)
     const pressedKey = flattenedKeys.find(key => {
-        // Verificar si la tecla presionada coincide con el valor o el código de la tecla
+        // Check if the pressed key matches the value or code of the key
         return (
             key.value.toLowerCase() === e.key.toLowerCase() ||
             key.code === e.code ||
-            (key.type === 'especial' && key.value === 'SPACE' && e.code === 'Space') ||
-            (key.type === 'especial' && key.value === 'Tab' && e.code === 'TAB') ||
-            (key.type === 'especial' && key.value === 'Delete' && e.code === 'Backspace') ||
-            (key.type === 'especial' && key.value === 'SHIFT' && e.code === 'ShiftLeft') ||
-            (key.type === 'especial' && key.value === 'SHIFT' && e.code === 'ShiftRight') ||
-            (key.type === 'especial' && key.value === 'CapsLock' && e.code === 'CapsLock') ||
-            (key.type === 'especial' && key.value === 'Alt Gr' && e.code === 'AltRight') ||
-            (key.type === 'especial' && key.value === 'Alt' && e.code === 'AltLeft') ||
-            (key.type === 'especial' && key.value === 'Enter' && e.code === 'Enter') || e.code === 'NumpadEnter'
+            (key.type === 'special' && key.value === 'SPACE' && e.code === 'Space') ||
+            (key.type === 'special' && key.value === 'Tab' && e.code === 'TAB') ||
+            (key.type === 'special' && key.value === 'Delete' && e.code === 'Backspace') ||
+            (key.type === 'special' && key.value === 'SHIFT' && e.code === 'ShiftLeft') ||
+            (key.type === 'special' && key.value === 'SHIFT' && e.code === 'ShiftRight') ||
+            (key.type === 'special' && key.value === 'CapsLock' && e.code === 'CapsLock') ||
+            (key.type === 'special' && key.value === 'Alt Gr' && e.code === 'AltRight') ||
+            (key.type === 'special' && key.value === 'Alt' && e.code === 'AltLeft') ||
+            (key.type === 'special' && key.value === 'Enter' && e.code === 'Enter') || e.code === 'NumpadEnter'
         );
     });
 
-    // Si se encontró la tecla, manejar la pulsación y evitar la propagación del evento
+    // If the key is found, handle the press and prevent the event from propagating
     if (pressedKey) {
         handleKeyPress(pressedKey.value);
-        e.preventDefault(); // Evitar que el evento se propague
+        e.preventDefault(); // Prevent the event from propagating
     }
 });
 
-// Evento para capturar la liberación de teclas especiales
-document.addEventListener('keyup', function (e){
-    switch (e.code){
+// Event to capture the release of special keys
+document.addEventListener('keyup', function (e) {
+    switch (e.code) {
         case 'Alt':
             isAltPressed = false;
             break;
@@ -273,24 +278,21 @@ document.addEventListener('keyup', function (e){
     }
 });
 
-
-
-
-// Funcion para añadir una clase a cada tecla del teclado
-function addKeyToKeyboardRows(rows){
-    for (let i = 0; i < rows.length; i++){
+// Function to add a class to each key on the keyboard
+function addKeyToKeyboardRows(rows) {
+    for (let i = 0; i < rows.length; i++) {
         const row = rows[i];
-        for (let j = 0; j < row.length; j++){
+        for (let j = 0; j < row.length; j++) {
             const key = row[j];
-            key.classes = key.classes ? key.classes + ' key': 'key';
+            key.classes = key.classes ? key.classes + ' key' : 'key';
         }
     }
 }
 
-// Llamamos a la funcion para añadir la clase "key"
+// Call the function to add the "key" class
 addKeyToKeyboardRows(keyboardRows);
 
 console.log(keyboardRows);
 
-// Llamar a la funcion para generar el teclado
+// Call the function to generate the keyboard
 generateKeyboard();
