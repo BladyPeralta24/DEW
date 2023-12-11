@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de validacion</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <header><h1>Project 7</h1></header>
+    <div class="supercontainer">
+        <h2>FORM</h2>
+        <form class="needs-validation" novalidate>
+            <div class="container bg-light p-5">
+                <!-- Nombre -->
+                <div class="row">
+                    <div class="mb-3 col">
+                        <label for="inputName" class="form-label">Name:</label>
+                        <input type="text" name="name" class="form-control" id="name" placeholder="Your name..." required>
+                        <div class="invalid-feedback">
+                            El nombre tiene que empezar por mayúscula
+                        </div>
+                    </div>
+                    <!-- Apellidos -->
+                    <div class="mb-3 col">
+                        <label for="inputSurname" class="form-label">Surname:</label>
+                        <input type="text" class="form-control" id="surname" name="surname" placeholder="Your surname" required>
+                        <div class="invalid-feedback">
+                            Tiene que tener dos apellidos y que empiezen por mayúscula, cada uno
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <!--DNI-->
+                    <div class="mb-3 col">
+                        <label for="id" class="form-label">DNI:</label>
+                        <input type="text" name="dni" id="dni" class="form-control" placeholder="Ex: 12345678A" required>
+                        <div class="invalid-feedback">
+                            Tiene que tener un DNI válido
+                        </div>
+                    </div>
+                    <!-- Fecha de nacimiento -->
+                    <div class="mb-3 col">
+                        <label for="date" class="form-label">Date:</label>
+                        <input type="date" name="date" class="form-control" id="date" required>
+                        <div class="valid-feedback">
+                            Fecha válida
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- Código Postal español -->
+                    <div class="mb-3 col">
+                        <label for="postCode" class="form-label"> Post Code:</label>
+                        <input type="text" id="postCode" name="postCode" class="form-control" placeholder="XXXXX" required>
+                        <div class="invalid-feedback">
+                            Tiene que ser un código postal español
+                        </div>
+                    </div>
+                    <!-- Correo electronico -->
+                    <div class="mb-3 col">
+                        <label for="email" class="form-label">Email:</label>
+                        <input type="email" name="email" id="email" class="form-control" placeholder="Your email..." required>
+                        <div class="invalid-feedback">
+                            Correo Electrónico  válido
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- Telefono Fijo -->
+                    <div class="mb-3 col">
+                        <label for="landdivne" class="form-label">Telephone number:</label>
+                        <input type="text" name="phone" id="phone" class="form-control" placeholder="XXX XXX XXX" required>
+                        <div class="invalid-feedback">
+                            Teléfono fijo válido
+                        </div>
+                    </div>
+                    <!-- Telefono movil -->
+                    <div class="mb-3 col">
+                        <label for="mobile" class="form-label">Mobile phone number:</label>
+                        <input type="text" name="mobile" id="mobile" class="form-control" placeholder="XXX XXX XXX" required>
+                        <div class="invalid-feedback">
+                            Teléfono móvil válido
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- IBAN (Cuenta Bancaria) -->
+                    <div class="mb-3 col">
+                        <label for="IBAN" class="form-label">Bank account</label>
+                        <input type="text" name="IBAN" id="IBAN" class="form-control" placeholder="ESXX XXXX XXXX XXXX XXXX XXXX" required>
+                        <div class="invalid-feedback">
+                            Cuenta de banco válida
+                        </div>
+                    </div>
+                    <!-- Tarjeta de credito -->
+                    <div class="mb-3 col">
+                        <label for="ValidationCustom01" class="form-label">Credit Card</label>
+                        <input type="text" name="creditCard" id="validationCustom01" class="form-control" placeholder="XXXX XXXX XXXX XXXX" required>
+                        <div class="invalid-feedback">
+                            <p>Tarjeta de credito válida</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- Contraseña -->
+                    <div class="mb-3 col">
+                        <label for="passw" class="form-label">Password:</label>
+                        <input type="password" name="password" id="password" class="form-control" required>
+                        <div class="invalid-feedback">
+                            12 caracteres como mínimo, un numero y un simbolo
+                        </div>
+                    </div>
+                    <!-- Repetir contraseña -->
+                    <div class="mb-3 col">
+                        <label for="repeatPassw" class="form-label">Repeat Password:</label>
+                        <input type="password" name="repeatPassword" id="repeatPassword" class="form-control" required>
+                        <div class="invalid-feedback">
+                            La contraseña no coincide
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="mb-3 col-6">
+                        <button for="btn-check-3" class="btn btn-success btn-lg btn-lg d-grid gap-3" id="btn-save" type="submit">Save</button>
+                    </div>
+                    <div class="mb-3 col-6 ">
+                        <button for="btn-check-3" class="btn btn-success btn-lg d-grid gap-3" id="btn-retrieve" type="button">Retrieve</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <script src="./script.js"></script>
+        <script>
+            /* Prueba con las validaciones*/
+            (function () {
+            'use strict'
+
+            var forms = document.querySelectorAll('.needs-validation')
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                        }
+
+                        form.classList.add('was-validated')
+                }, false)
+                })
+            })()
+        </script>
+    </div>
+</body>
+</html>
