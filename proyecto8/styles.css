@@ -1,0 +1,29 @@
+header{
+    border: 3px solid black;
+    text-align: center;
+    margin: auto;
+    background: rgb(34,193,195);
+    background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+}
+
+h2{
+    text-align: center;
+    margin: auto;
+    padding: auto;
+}
+
+.supercontainer{
+    background-color: turquoise;
+    min-height: 100vh;
+}
+.container{
+    border: 5px solid black;
+    font-weight: bold;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    background: rgb(34,193,195);
+    background: linear-gradient(298deg, rgba(34,193,195,1) 25%, rgba(253,187,45,1) 100%);
+    padding: 20px;
+}
+
