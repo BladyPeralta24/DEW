@@ -8,9 +8,6 @@ body {
 }
 
 
-
-
-
 .container{
     margin-bottom: 20px;
     display: flex;
@@ -30,8 +27,14 @@ button{
     cursor: pointer;
 }
 
+#return{
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+}
+
 .botonPelicula1{
-    background-image: url(/proyecto3/imagenes/slam_dunk.jpg);
+    background-image: url(./imagenes/slam_dunk.jpg);
     margin: 0.625em;
     cursor: pointer;
     width: 270px;
@@ -43,7 +46,7 @@ button{
 }
 
 .botonPelicula2{
-    background-image: url(/proyecto3/imagenes/saw-x.jpg);
+    background-image: url(./imagenes/saw-x.jpg);
     margin: 0.625em;
     cursor: pointer;
     background-size: cover;
@@ -54,7 +57,7 @@ button{
 }
 
 .botonPelicula3{
-    background-image: url(/proyecto3/imagenes/avatar.jpg);
+    background-image: url(./imagenes/avatar.jpg);
     margin: 0.625em;
     cursor: pointer;
     background-size: cover;

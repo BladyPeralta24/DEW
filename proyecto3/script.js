@@ -8,8 +8,6 @@ class Teatro{
         this.columnas = columnas;
         
         //Creamos una matriz de asientos aleatorios
-        //this.asientos = Array(filas).fill().map(() => Array(columnas).fill().map(() => Math.random() < 0.5 ? 'libre' : 'ocupado'));
-        //this.asientos = this.generarAsientos();
         //Inicializamos las matrices para el seguimiento de asientos reservados y confirmados
         this.asientosReservados = Array(filas).fill().map(() => Array(columnas).fill(false));
         this.asientosConfirmados = Array(filas).fill().map(() => Array(columnas).fill(false));
