@@ -65,16 +65,6 @@ class Teatro{
         }
     }
 
-/*     // Método para lberar un asiento previamente confirmado
-    liberarAsiento(fila,columna){
-        if (this.asientosConfirmados[fila][columna]){
-            this.asientosConfirmados[fila][columna] = false;
-            return true;
-        }else{
-            return false;
-        }
-    } */
-
 
 
     // Método para calcular el total de la reserva y los asientos seleccionados
@@ -160,32 +150,6 @@ class Teatro{
                 const asientoId = `asiento-${i}-${j}`;
                 elementoAsiento.id = asientoId;
 
-                
-    
-                /* // Agregar un evento de clic al asiento
-                elementoAsiento.addEventListener('click', () => {
-                    if (!asiento.inmutable || !asiento.reserva) {
-                        if (!elementoAsiento.classList.contains('en_reserva')) {
-                            // Marcar el asiento como en reserva cuando se selecciona
-                            elementoAsiento.classList.remove('libre');
-                            elementoAsiento.classList.add('en_reserva');
-                            console.log(`Asiento seleccionado: ${asientoId}`);
-                            console.log(elementoAsiento.className = 'en_reserva');
-                            console.log(elementoAsiento.id = 'en_reserva');
-                            this.reservarAsiento(i,j); // Llama al metodo reservarAsiento
-                            this.actualizarCosto(elementoCosteTotal); // actualiza el costo despues de reservar
-                        } else {
-                            // Desmarcar el asiento cuando se hace clic nuevamente
-                            elementoAsiento.classList.remove('en_reserva');
-                            elementoAsiento.classList.add('libre');
-                            console.log(elementoAsiento.className = 'libre');
-                            console.log(elementoAsiento.id = 'libre');
-                            this.liberarAsiento(i,j); // Llama al método liberarAsiento
-                            this.quitarAsiento(i,j);
-                            this.actualizarCosto(elementoCosteTotal);
-                        }
-                    }
-                }); */
 
                 // Agregar evento onclick para reservar o liberar asientos
                 elementoAsiento.onclick = () => {
