@@ -1,0 +1,16 @@
+[
+    {
+        "name": "Manolo",
+        "surname": "López Pérez",
+        "dni": "12345678X",
+        "date": "22/09/2000",
+        "postCode": "35500",
+        "email": "pepe@gmail.com",
+        "phone": "928666666",
+        "mobile": "666999666",
+        "IBAN": "ES7921000813610123456789",
+        "creditCard": "4539955085883327",
+        "password": "Pepe1234567890@",
+        "repeatPassword": "Pepe1234567890@"
+      }     
+]

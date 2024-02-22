@@ -36,19 +36,7 @@ class Teatro{
     //Creacion de metodos de la clase
 
     generarAsientos(){
-        // En el metodo generarAsientos, solo se genera asientos con la propiedad "inmutable".
-        // Los asientos reservados deben manejarse por separado
         const asiento = [];
-        for (let i = 1; i <= this.filas; i++){
-            const fila = [];
-            for (let j = 1; j <= this.columnas; j++){
-                const inmutable = Math.random() < 0.5;
-                fila.push({number: j, inmutable});
-            }
-            asiento.push(fila);
-        }
-        return asiento;
-        /* const asiento = [];
 
         for (let i = 1; i <= this.filas; i++){
             const fila = [];
@@ -61,28 +49,20 @@ class Teatro{
             asiento.push(fila);
         }
 
-        return asiento; */
+        return asiento;
     }
 
 
 
      // Método para reservar un asiento
     reservarAsiento(fila, columna) {
-        // En el metodo reservarAsiento, solo se cambia el estado de asientosReservados, no el de inmutable
-        if (fila >= 0 && fila < this.filas && columna >= 0 && columna < this.columnas) {
-            if (!this.asientosReservados[fila][columna] && !this.asientos[fila][columna].inmutable) {
-                this.asientosReservados[fila][columna] = true;
-                return true;
-            }
-        }
-        return false;
-        /* if (!this.asientosReservados[fila][columna] && !this.asientosConfirmados[fila][columna] && this.asientos[fila][columna].inmutable === false) {
+        if (!this.asientosReservados[fila][columna] && !this.asientosConfirmados[fila][columna] && this.asientos[fila][columna].inmutable === false) {
           this.asientosReservados[fila][columna] = true;
           this.asientos[fila][columna].inmutable = true; // Aqui deberia marcar los asientos como "ocupado"
           return true;
         } else {
           return false;
-        } */
+        }
     }
 
 
@@ -309,6 +289,7 @@ function cambiarEstadoAsientos(){
     
 }
   
+
 
 
 // obtener una referencia al boton "Reservar" por su ID
