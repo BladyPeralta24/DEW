@@ -58,7 +58,7 @@ class Teatro {
   mostrarAsientos() {
     // Inicia la construcción del documento HTML
     document.open();
-    document.write('<link rel="stylesheet" href="/DEW/proyecto2/style.css">');
+    document.write('<link rel="stylesheet" href="/proyecto2/style.css">');
     document.write('<table>');
 
     // Itera sobre las filas y columnas de asientos
