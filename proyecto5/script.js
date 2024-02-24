@@ -92,17 +92,27 @@ list.addEventListener('click', function(e) {
   }
 });
 
-// Function to check for duplicates within the same folder
-function isDuplicate(value, parentLi) {
-  const exercises = parentLi.querySelectorAll('ul > li');
+let exerciseNames = {};
 
-  for (const exer of exercises) {
-    const title = exer.querySelector('.name').textContent.trim();
-    if (title.toLowerCase() === value.toLowerCase()) {
-      return true; // Duplicate element with the same name in the same folder
-    }
+function isDuplicate(value, parentLi) {
+  const level = parentLi.getAttribute('data-level');
+
+  // If this level has not been seen before, initialize it
+  if (!exerciseNames[level]) {
+    exerciseNames[level] = new Set();
   }
-  return false; // No duplicates in the same folder
+
+  // Convert to lowercase for case-insensitive comparison
+  value = value.toLowerCase();
+
+  // Check if the value is a duplicate
+  if (exerciseNames[level].has(value)) {
+    return true; // Duplicate element with the same name in the same folder
+  } else {
+    // If it's not a duplicate, add it to the set of names for this level
+    exerciseNames[level].add(value);
+    return false; // No duplicates in the same folder
+  }
 }
 
 // Function to handle the change of the checkbox
@@ -152,4 +162,12 @@ searchBar.addEventListener('keydown', function(e) {
     e.preventDefault(); // Prevent the default TAB behavior
     searchBar.value = matchingElements[0];
   }
+});
+
+addForm.addEventListener('submit', function(e) {
+  e.preventDefault();
+});
+
+searchForm.addEventListener('submit', function(e) {
+  e.preventDefault();
 });
