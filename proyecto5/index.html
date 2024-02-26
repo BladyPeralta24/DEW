@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manejo de carpetas</title>
     <link rel="stylesheet" href="./styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <div id="wrapper">
@@ -23,7 +25,8 @@
                 <li data-level="0">
                     <span class="name"><img src="./imagenes/carpeta.png" alt="" class="carpeta">Raiz /</span>
                     <span class="add">+</span>
-                    <input type="checkbox" id="rootCheckbox" checked onclick="toggleFolderContent(this, rootFolder)">
+                    <!-- <input type="checkbox" id="rootCheckbox" checked onclick="toggleFolderContent(this, rootFolder)"> -->
+                    <input type="checkbox" id="rootCheckbox" checked>
                     <ul></ul>
                 </li>
             </ul>
@@ -31,8 +34,8 @@
         <form id="add-ex">
              <input type="text" placeholder="Añadir carpeta o fichero" />
          </form>
-
-         <script src="script.js"></script>
+         <!-- <script src="script.js"></script> -->
+         <script src="./script_jquery.js"></script>
 
     </div>
 </body>
